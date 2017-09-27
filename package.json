@@ -1,0 +1,22 @@
+{
+  "name": "sal",
+  "version": "0.0.1",
+  "description": "Lightweight scroll animation library",
+  "main": "dist/sal.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "Mirosław Ciastek",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "webpack": "^3.6.0"
+  }
+}
