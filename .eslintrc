@@ -23,7 +23,7 @@
     "object-curly-spacing": ["error", "always"]
   },
   "env": {
-    "node": false,
+    "node": true,
     "browser": true,
     "es6": true,
     "jest": true

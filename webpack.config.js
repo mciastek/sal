@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-var path = require('path')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/sal.js',
@@ -10,16 +10,16 @@ module.exports = {
     filename: 'sal.js',
     library: 'Sal',
     libraryTarget: 'umd',
-    sourceMapFilename: '[file].map'
+    sourceMapFilename: '[file].map',
   },
   module: {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
+      loader: 'babel-loader',
+    }],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
 };
