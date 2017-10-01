@@ -5,6 +5,7 @@
   "main": "dist/sal.js",
   "scripts": {
     "build": "webpack",
+    "pretest": "./node_modules/.bin/eslint ./src/**/*.js",
     "test": "jest --verbose",
     "test:watch": "jest --verbose --watchAll"
   },
