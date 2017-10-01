@@ -5,7 +5,7 @@ import {
 
 const defaults = {
   rootMargin: '0px',
-  threshold: 1,
+  threshold: 0,
   animateClassName: 'animated',
 };
 
