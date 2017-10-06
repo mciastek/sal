@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/sal.js',
@@ -17,9 +18,16 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
+    }, {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader?minimize&sourceMap!sass-loader!postcss-loader',
+      }),
     }],
   },
   plugins: [
+    new ExtractTextPlugin('sal.css'),
     new webpack.optimize.UglifyJsPlugin(),
   ],
 };
