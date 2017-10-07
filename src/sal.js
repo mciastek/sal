@@ -1,31 +1,41 @@
-import {
-  animate,
-  isAnimated,
-} from './helpers';
-
 import './sal.scss';
 
-const defaults = {
+const SELECTOR = '[data-sal]';
+
+let options = {
   rootMargin: '0px',
   threshold: 0,
   animateClassName: 'sal-animate',
 };
 
-export default function (selector = '[data-sal]', options = defaults) {
-  const {
-    rootMargin,
-    threshold,
-    animateClassName,
-  } = options;
+let elements = [];
+let intersectionObserver = null;
+let initialized = false;
 
-  const onIntersection = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0) {
-        observer.unobserve(entry.target);
-        animate(entry.target, animateClassName);
-      }
-    });
-  };
+const animate = element => (
+  element.classList.add(options.animateClassName)
+);
+
+const isAnimated = element => (
+  element.classList.contains(options.animateClassName)
+);
+
+const onIntersection = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.intersectionRatio > 0) {
+      observer.unobserve(entry.target);
+      animate(entry.target);
+    }
+  });
+};
+
+export default function (settings = options) {
+  if (settings !== options) {
+    options = {
+      ...options,
+      ...settings,
+    };
+  }
 
   if (!window.IntersectionObserver) {
     throw Error(`
@@ -35,17 +45,21 @@ export default function (selector = '[data-sal]', options = defaults) {
     `);
   }
 
-  const intersectionObserver = new IntersectionObserver(onIntersection, {
-    rootMargin,
-    threshold,
+  intersectionObserver = new IntersectionObserver(onIntersection, {
+    rootMargin: options.rootMargin,
+    threshold: options.threshold,
   });
 
-  const elements = [].filter.call(
-    document.querySelectorAll(selector),
-    element => !isAnimated(element, animateClassName),
+  elements = [].filter.call(
+    document.querySelectorAll(SELECTOR),
+    element => !isAnimated(element, options.animateClassName),
   );
 
   elements.forEach(element => intersectionObserver.observe(element));
 
-  return elements;
+  initialized = true;
+
+  return {
+    isInitialized: initialized,
+  };
 }
