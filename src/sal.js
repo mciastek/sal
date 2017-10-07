@@ -3,13 +3,15 @@ import {
   isAnimated,
 } from './helpers';
 
+import './sal.scss';
+
 const defaults = {
   rootMargin: '0px',
   threshold: 0,
-  animateClassName: 'animated',
+  animateClassName: 'sal-animate',
 };
 
-export default function (selector = '.js-sal', options = defaults) {
+export default function (selector = '[data-sal]', options = defaults) {
   const {
     rootMargin,
     threshold,
