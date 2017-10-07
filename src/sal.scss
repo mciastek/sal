@@ -51,7 +51,7 @@ $sal-easings: (
   ease-in-back: cubic-bezier(.6, -.28, .735, .045),
   ease-out-back: cubic-bezier(.175, .885, .32, 1.275),
   ease-in-out-back: cubic-bezier(.68, -.55, .265, 1.55)
-)
+);
 
 /**
  * Core
@@ -63,11 +63,11 @@ $sal-easings: (
 }
 
 @for $i from 4 through 40 {
-  [data-sal][data-sal-duration='#{$i * 0.05}'] {
+  [data-sal][data-sal-duration='#{$i * 50}'] {
     transition-duration: #{$i * 0.05}s;
   }
 
-  [data-sal][data-sal-delay='#{$i * 0.05}'] {
+  [data-sal][data-sal-delay='#{$i * 50}'] {
     transition-duration: #{$i * 0.05}s;
   }
 }
