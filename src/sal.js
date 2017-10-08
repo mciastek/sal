@@ -2,9 +2,10 @@ import './sal.scss';
 
 let options = {
   rootMargin: '0px',
-  threshold: 0,
+  threshold: 0.5,
   animateClassName: 'sal-animate',
   selector: '[data-sal]',
+  once: true,
   disableFor: null,
 };
 
@@ -15,6 +16,10 @@ const animate = element => (
   element.classList.add(options.animateClassName)
 );
 
+const reverse = element => (
+  element.classList.remove(options.animateClassName)
+);
+
 const isAnimated = element => (
   element.classList.contains(options.animateClassName)
 );
@@ -22,8 +27,13 @@ const isAnimated = element => (
 const onIntersection = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.intersectionRatio > 0) {
-      observer.unobserve(entry.target);
       animate(entry.target);
+
+      if (!options.once) {
+        observer.unobserve(entry.target);
+      }
+    } else if (!options.once) {
+      reverse(entry.target);
     }
   });
 };
