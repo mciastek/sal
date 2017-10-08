@@ -1,6 +1,6 @@
 /**
  * Sal - Scroll Animation Library
- * Highly performant, lightweight scroll animation library
+ * Performance focused, lightweight scroll animation library
  */
 
 import './sal.scss';

@@ -1,7 +1,7 @@
 {
   "name": "sal",
   "version": "0.3.3",
-  "description": "Highly performant, lightweight scroll animation library",
+  "description": "Performance focused, lightweight scroll animation library",
   "main": "dist/sal.js",
   "scripts": {
     "build": "webpack",
