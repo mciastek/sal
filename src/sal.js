@@ -121,7 +121,7 @@ const init = (settings = options) => {
     };
   }
 
-  if (!isDisabled) {
+  if (!isDisabled()) {
     enable();
   }
 

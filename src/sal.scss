@@ -68,7 +68,7 @@ $sal-easings: (
   }
 
   [data-sal][data-sal-delay='#{$i * 50}'] {
-    transition-duration: #{$i * 0.05}s;
+    transition-delay: #{$i * 0.05}s;
   }
 }
 
