@@ -1,16 +1,15 @@
 import './sal.scss';
 
-const SELECTOR = '[data-sal]';
-
 let options = {
   rootMargin: '0px',
   threshold: 0,
   animateClassName: 'sal-animate',
+  selector: '[data-sal]',
+  disableFor: null,
 };
 
 let elements = [];
 let intersectionObserver = null;
-let initialized = false;
 
 const animate = element => (
   element.classList.add(options.animateClassName)
@@ -29,7 +28,26 @@ const onIntersection = (entries, observer) => {
   });
 };
 
-export default function (settings = options) {
+const disable = () => {
+  intersectionObserver.disconnect();
+  intersectionObserver = null;
+};
+
+const enable = () => {
+  intersectionObserver = new IntersectionObserver(onIntersection, {
+    rootMargin: options.rootMargin,
+    threshold: options.threshold,
+  });
+
+  elements = [].filter.call(
+    document.querySelectorAll(options.selector),
+    element => !isAnimated(element, options.animateClassName),
+  );
+
+  elements.forEach(element => intersectionObserver.observe(element));
+};
+
+const init = (settings = options) => {
   if (settings !== options) {
     options = {
       ...options,
@@ -37,29 +55,15 @@ export default function (settings = options) {
     };
   }
 
-  if (!window.IntersectionObserver) {
-    throw Error(`
-      Your browser does not support IntersectionObserver!
-      Get a polyfill from here:
-      https://github.com/w3c/IntersectionObserver/tree/master/polyfill
-    `);
+  if (!options.disableFor) {
+    enable();
   }
 
-  intersectionObserver = new IntersectionObserver(onIntersection, {
-    rootMargin: options.rootMargin,
-    threshold: options.threshold,
-  });
-
-  elements = [].filter.call(
-    document.querySelectorAll(SELECTOR),
-    element => !isAnimated(element, options.animateClassName),
-  );
-
-  elements.forEach(element => intersectionObserver.observe(element));
-
-  initialized = true;
-
   return {
-    isInitialized: initialized,
+    elements,
+    disable,
+    enable,
   };
-}
+};
+
+export default init;
