@@ -15,30 +15,30 @@ Performance focused, lightweight (less than **2.5 kb**) scroll animation library
 
 ```sh
 # Usage with NPM
-$ npm install --save sal
+$ npm install --save sal.js
 
 # and with Yarn
-$ yarn add sal
+$ yarn add sal.js
 ```
 
 Then load it with your favorite module loader or use as global, when no modules
 
 ```js
 // ES6 modules
-import sal from 'sal'
+import sal from 'sal.js'
 
 // CommonJS modules
-var sal = require('sal')
+var sal = require('sal.js')
 ```
 
 And remember to add styles
 
 ```scss
 // Webpack
-@import '~sal/sal.css';
+@import '~sal.js/sal.css';
 
 // Other
-@import './node_modules/sal/dist/sal.css';
+@import './node_modules/sal.js/dist/sal.css';
 ```
 
 ## Usage
