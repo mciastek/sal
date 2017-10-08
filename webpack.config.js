@@ -9,8 +9,9 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     publicPath: 'dist/',
     filename: 'sal.js',
-    library: 'Sal',
+    library: 'sal',
     libraryTarget: 'umd',
+    libraryExport: 'default',
     sourceMapFilename: '[file].map',
   },
   module: {
