@@ -12,9 +12,10 @@ let options = {
   rootMargin: '0px',
   threshold: 0.5,
   animateClassName: 'sal-animate',
+  disabledClassName: 'sal-disabled',
   selector: '[data-sal]',
   once: true,
-  disableFor: null,
+  disabled: false,
 };
 
 /**
@@ -48,6 +49,18 @@ const isAnimated = element => (
 );
 
 /**
+ * Check if should be disabled
+ * @return {Boolean}
+ */
+const isDisabled = () => (
+  options.disabled ||
+  (
+    (typeof options.disabled === 'function') &&
+    options.disabled()
+  )
+);
+
+/**
  * IntersectionObserver callback
  * @param  {Array<IntersectionObserverEntry>} entries
  * @param  {IntersectionObserver} observer
@@ -70,6 +83,8 @@ const onIntersection = (entries, observer) => {
  * Disable sal
  */
 const disable = () => {
+  document.body.classList.add(options.disabledClassName);
+
   intersectionObserver.disconnect();
   intersectionObserver = null;
 };
@@ -78,6 +93,8 @@ const disable = () => {
  * Enable sal by launching new IntersectionObserver
  */
 const enable = () => {
+  document.body.classList.remove(options.disabledClassName);
+
   intersectionObserver = new IntersectionObserver(onIntersection, {
     rootMargin: options.rootMargin,
     threshold: options.threshold,
@@ -104,7 +121,7 @@ const init = (settings = options) => {
     };
   }
 
-  if (!options.disableFor) {
+  if (!isDisabled) {
     enable();
   }
 
