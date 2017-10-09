@@ -89,7 +89,7 @@ $sal-easings: (
 }
 
 [data-sal|='fade'].sal-animate,
-body.sal-disabled [data-sal|='fade'].sal-animate {
+body.sal-disabled [data-sal|='fade'] {
   opacity: 1;
 }
 
@@ -116,7 +116,7 @@ body.sal-disabled [data-sal|='fade'].sal-animate {
 }
 
 [data-sal|='slide'].sal-animate,
-body.sal-disabled [data-sal|='slide'].sal-animate {
+body.sal-disabled [data-sal|='slide'] {
   opacity: 1;
   transform: none;
 }
@@ -136,7 +136,7 @@ body.sal-disabled [data-sal|='slide'].sal-animate {
 }
 
 [data-sal|='zoom'].sal-animate,
-body.sal-disabled [data-sal|='zoom'].sal-animate {
+body.sal-disabled [data-sal|='zoom'] {
   opacity: 1;
   transform: none;
 }
@@ -164,6 +164,6 @@ body.sal-disabled [data-sal|='zoom'].sal-animate {
 }
 
 [data-sal|='flip'].sal-animate,
-body.sal-disabled [data-sal|='flip'].sal-animate {
+body.sal-disabled [data-sal|='flip'] {
   transform: none;
 }
