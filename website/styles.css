@@ -1,0 +1,14 @@
+body {
+  background-color: #1abc9c;
+  color: #ecf0f1;
+  font-family: 'Cabin', sans-serif;
+}
+
+.page-header {
+  padding: 45px 0;
+  text-align: center;
+}
+
+.page-header__title {
+  font-size: 36px;
+}
