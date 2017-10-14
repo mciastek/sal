@@ -2,6 +2,11 @@
 // see: https://medium.com/@ivanmontiel/using-that-headless-chrome-youve-been-hearing-about-543a8cc07af5
 
 const puppeteer = require('puppeteer');
+const path = require('path');
+
+const options = {
+  rootUrl: path.resolve(__dirname, 'test', 'fixtures'),
+};
 
 /**
  * This is a thin wrapper so that we use a singleton of
@@ -9,17 +14,16 @@ const puppeteer = require('puppeteer');
  */
 class Browser {
   setUp(done) {
-    const puppeteerOpts = this.options && this.options.puppeteer ?
-      this.options.puppeteer :
-      {};
-    puppeteer.launch(puppeteerOpts).then(async (b) => {
-      this.setBrowser(b);
+    const puppeteerOpts = options.puppeteer ? options.puppeteer : {};
+
+    puppeteer.launch(puppeteerOpts).then(async (browser) => {
+      this.setBrowser(browser);
       done();
     });
   }
 
-  setBrowser(b) {
-    this.browser = b;
+  setBrowser(browser) {
+    this.browser = browser;
     const oldNewPage = this.browser.newPage.bind(this.browser);
 
     this.browser.newPage = async function () {
@@ -29,11 +33,7 @@ class Browser {
     };
   }
 
-  setOptions(opts) {
-    this.options = opts;
-  }
-
-  inBrowser(promise) {
+  runInBrowser(promise) {
     return (done) => {
       promise(this.browser, this.options)
         .then(() => done()).catch(done);
