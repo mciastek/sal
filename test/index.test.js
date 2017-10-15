@@ -95,7 +95,12 @@ describe('Sal', () => {
         });
       }, SELECTOR);
 
+      const bodyHasDisabledClass = await page.evaluate(() => (
+        document.body.classList.contains('sal-disabled')
+      ));
+
       expect(fifthIsAnimated).toBeFalsy();
+      expect(bodyHasDisabledClass).toBeTruthy();
     }));
 
     it('should enable animations after disabled', browser.run(async (engine, opts) => {
@@ -105,17 +110,12 @@ describe('Sal', () => {
       const SELECTOR = '.item';
       await page.waitFor(SELECTOR);
 
-      const SECOND_ITEM_SELECTOR = '.item--2';
-      const FIFTH_ITEM_SELECTOR = '.item--2';
+      const FIFTH_ITEM_SELECTOR = '.item--5';
 
-      const fifthIsAnimated = await page.evaluate((secondSelector, fifthSelector) => {
+      const fifthIsAnimated = await page.evaluate((selector) => {
+        const fifthItem = document.querySelector(selector);
+
         window.scrollAnimations.disable();
-        const secondItem = document.querySelector(secondSelector);
-        const fifthItem = document.querySelector(fifthSelector);
-
-        const secondPosY = secondItem.getBoundingClientRect().top + window.scrollY;
-        window.scrollBy(0, secondPosY);
-
         window.scrollAnimations.enable();
 
         const fifthPosY = fifthItem.getBoundingClientRect().top + window.scrollY;
@@ -126,9 +126,14 @@ describe('Sal', () => {
             resolve(fifthItem.classList.contains('sal-animate'));
           }, 100);
         });
-      }, SECOND_ITEM_SELECTOR, FIFTH_ITEM_SELECTOR);
+      }, FIFTH_ITEM_SELECTOR);
 
-      expect(fifthIsAnimated).toBeFalsy();
+      const bodyHasDisabledClass = await page.evaluate(() => (
+        document.body.classList.contains('sal-disabled')
+      ));
+
+      expect(fifthIsAnimated).toBeTruthy();
+      expect(bodyHasDisabledClass).toBeFalsy();
     }));
   });
 });
