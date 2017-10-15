@@ -4,7 +4,7 @@
 
 $sal-animation-duration: 0.2s !default;
 $sal-animation-delay: 0s !default;
-$sal-slide-offset: 50% !default;
+$sal-slide-offset: 20% !default;
 $sal-zoom-in-scale: 0.5 !default;
 $sal-zoom-out-scale: 1.1 !default;
 $sal-flip-rotate: 91deg !default;
@@ -148,19 +148,19 @@ body.sal-disabled [data-sal|='zoom'] {
 }
 
 [data-sal='flip-left'] {
-  transform: perspective(2000px) rotate3d(0, -$sal-flip-rotate, 0);
+  transform: perspective(2000px) rotateY(-$sal-flip-rotate);
 }
 
 [data-sal='flip-right'] {
-  transform: perspective(2000px) rotate3d(0, $sal-flip-rotate, 0);
+  transform: perspective(2000px) rotateY($sal-flip-rotate);
 }
 
 [data-sal='flip-up'] {
-  transform: perspective(2000px) rotate3d(-$sal-flip-rotate, 0, 0);
+  transform: perspective(2000px) rotateX(-$sal-flip-rotate);
 }
 
 [data-sal='flip-down'] {
-  transform: perspective(2000px) rotate3d($sal-flip-rotate, 0, 0);
+  transform: perspective(2000px) rotateX($sal-flip-rotate);
 }
 
 [data-sal|='flip'].sal-animate,

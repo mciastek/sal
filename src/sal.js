@@ -9,7 +9,7 @@ import './sal.scss';
  * Default options
  */
 let options = {
-  rootMargin: '0px',
+  rootMargin: '0% 50%',
   threshold: 0.5,
   animateClassName: 'sal-animate',
   disabledClassName: 'sal-disabled',
@@ -67,10 +67,10 @@ const isDisabled = () => (
  */
 const onIntersection = (entries, observer) => {
   entries.forEach((entry) => {
-    if (entry.intersectionRatio > 0) {
+    if (entry.intersectionRatio >= options.threshold) {
       animate(entry.target);
 
-      if (!options.once) {
+      if (options.once) {
         observer.unobserve(entry.target);
       }
     } else if (!options.once) {

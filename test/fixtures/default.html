@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sal - Default settings</title>
+
+  <link rel="stylesheet" href="../../dist/sal.css">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .item {
+      background-color: #aaa;
+      height: 100vh;
+    }
+
+    .item:nth-child(2n) {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="item item--1" data-sal="fade"></div>
+  <div class="item item--2" data-sal="slide-up"></div>
+  <div class="item item--3" data-sal="slide-down"></div>
+  <div class="item item--4" data-sal="slide-left"></div>
+  <div class="item item--5" data-sal="slide-right"></div>
+  <div class="item item--6" data-sal="zoom-in"></div>
+  <div class="item item--7" data-sal="zoom-out"></div>
+  <div class="item item--8" data-sal="flip-up"></div>
+  <div class="item item--9" data-sal="flip-down"></div>
+  <div class="item item--10" data-sal="flip-left"></div>
+  <div class="item item--11" data-sal="flip-right"></div>
+
+  <script src="../../dist/sal.js"></script>
+  <script>
+    window.scrollAnimations = sal();
+  </script>
+</body>
+</html>
