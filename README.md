@@ -1,4 +1,4 @@
-# Sal [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mciastek/sal/blob/master/LICENSE) [![Build Status](https://travis-ci.org/mciastek/sal.svg?branch=master)](https://travis-ci.org/mciastek/sal)
+# Sal [![npm version](https://badge.fury.io/js/sal.js.svg)](https://www.npmjs.com/package/sal.js) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mciastek/sal/blob/master/LICENSE) [![Build Status](https://travis-ci.org/mciastek/sal.svg?branch=master)](https://travis-ci.org/mciastek/sal)
 
 Performance focused, lightweight (less than **2.5 kb**) scroll animation library, written in vanilla JavaScript. No dependencies!
 
