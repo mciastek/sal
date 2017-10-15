@@ -13,6 +13,10 @@ describe('Sal', () => {
   });
 
   describe('browser', () => {
+    const SELECTOR = '.item';
+    const FIRST_ITEM_SELECTOR = '.item--1';
+    const FIFTH_ITEM_SELECTOR = '.item--5';
+
     beforeEach((done) => {
       browser.setUp(done);
     });
@@ -25,7 +29,6 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      const SELECTOR = '.item';
       await page.waitFor(SELECTOR);
 
       const elementsLength = await page.$$eval(SELECTOR, elements => (
@@ -43,7 +46,6 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      const SELECTOR = '.item';
       await page.waitFor(SELECTOR);
 
       const firstIsAnimated = await page.$eval(SELECTOR, el => (
@@ -57,7 +59,6 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      const SELECTOR = '.item--5';
       await page.waitFor(SELECTOR);
 
       const fifthIsAnimated = await page.evaluate((selector) => {
@@ -70,7 +71,7 @@ describe('Sal', () => {
             resolve(fifthItem.classList.contains('sal-animate'));
           }, 100);
         });
-      }, SELECTOR);
+      }, FIFTH_ITEM_SELECTOR);
 
       expect(fifthIsAnimated).toBeTruthy();
     }));
@@ -79,7 +80,6 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      const SELECTOR = '.item--5';
       await page.waitFor(SELECTOR);
 
       const fifthIsAnimated = await page.evaluate((selector) => {
@@ -93,7 +93,7 @@ describe('Sal', () => {
             resolve(fifthItem.classList.contains('sal-animate'));
           }, 100);
         });
-      }, SELECTOR);
+      }, FIFTH_ITEM_SELECTOR);
 
       const bodyHasDisabledClass = await page.evaluate(() => (
         document.body.classList.contains('sal-disabled')
@@ -107,10 +107,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      const SELECTOR = '.item';
       await page.waitFor(SELECTOR);
-
-      const FIFTH_ITEM_SELECTOR = '.item--5';
 
       const fifthIsAnimated = await page.evaluate((selector) => {
         const fifthItem = document.querySelector(selector);
@@ -134,6 +131,27 @@ describe('Sal', () => {
 
       expect(fifthIsAnimated).toBeTruthy();
       expect(bodyHasDisabledClass).toBeFalsy();
+    }));
+
+    it('should reverse animation on leave', browser.run(async (engine, opts) => {
+      const page = await engine.newPage();
+      await page.goto(`${opts.rootUrl}/repeat.html`);
+
+      await page.waitFor(SELECTOR);
+
+      const firstIsAnimated = await page.evaluate((selector) => {
+        const firstItem = document.querySelector(selector);
+
+        window.scrollBy(0, window.innerHeight);
+
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(firstItem.classList.contains('sal-animate'));
+          }, 100);
+        });
+      }, FIRST_ITEM_SELECTOR);
+
+      expect(firstIsAnimated).toBeFalsy();
     }));
   });
 });

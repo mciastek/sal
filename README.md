@@ -61,7 +61,7 @@ It will look for an element with `data-sal` attribute and launch animation, when
 
 | Property | Type | Description | Default  |
 |---------------------------|-------------|---------------|---------|
-| `rootMargin` | String | Corresponds to root's bounding box margin (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin)) | '0% 50%' |
+| `rootMargin` | String | Corresponds to root's bounding box margin (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin)) | 0% 50% |
 | `threshold` | Number | Percentage of element's area that needs to be visible to launch animation (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | 0.5 |
 | `once` | Boolean | Defines if animation needs to be launched once | true |
 | `disable` | Boolean | Flag for disabling animations | false |

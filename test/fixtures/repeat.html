@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Sal - Default settings</title>
+  <title>Sal - Repeat animations</title>
 
   <link rel="stylesheet" href="../../dist/sal.css">
   <style>
@@ -39,7 +39,9 @@
 
   <script src="../../dist/sal.js"></script>
   <script>
-    window.scrollAnimations = sal();
+    window.scrollAnimations = sal({
+      once: false
+    });
   </script>
 </body>
 </html>
