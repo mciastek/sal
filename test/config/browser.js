@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 const options = {
-  rootUrl: path.resolve(__dirname, 'test', 'fixtures'),
+  rootUrl: `file://${path.resolve(__dirname, '..', 'fixtures')}`,
 };
 
 /**
@@ -33,9 +33,9 @@ class Browser {
     };
   }
 
-  runInBrowser(promise) {
+  run(promise) {
     return (done) => {
-      promise(this.browser, this.options)
+      promise(this.browser, options)
         .then(() => done()).catch(done);
     };
   }
