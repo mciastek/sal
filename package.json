@@ -31,8 +31,8 @@
   "scripts": {
     "build": "webpack",
     "pretest": "./node_modules/.bin/eslint ./src/**/*.js",
-    "test": "jest --verbose",
-    "test:watch": "jest --verbose --watchAll"
+    "test": "NODE_ENV=test jest --verbose",
+    "test:watch": "NODE_ENV=test jest --verbose --watchAll"
   },
   "author": "Mirosław Ciastek",
   "license": "MIT",
