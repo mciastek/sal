@@ -49,6 +49,20 @@ const isAnimated = element => (
 );
 
 /**
+ * Enable animations by remove class from body
+ */
+const enableAnimations = () => {
+  document.body.classList.remove(options.disabledClassName);
+};
+
+/**
+ * Disable animations by add class from body
+ */
+const disableAnimations = () => {
+  document.body.classList.add(options.disabledClassName);
+};
+
+/**
  * Check if should be disabled
  * @return {Boolean}
  */
@@ -83,7 +97,7 @@ const onIntersection = (entries, observer) => {
  * Disable sal
  */
 const disable = () => {
-  document.body.classList.add(options.disabledClassName);
+  disableAnimations();
 
   intersectionObserver.disconnect();
   intersectionObserver = null;
@@ -93,7 +107,7 @@ const disable = () => {
  * Enable sal by launching new IntersectionObserver
  */
 const enable = () => {
-  document.body.classList.remove(options.disabledClassName);
+  enableAnimations();
 
   intersectionObserver = new IntersectionObserver(onIntersection, {
     rootMargin: options.rootMargin,
@@ -121,8 +135,20 @@ const init = (settings = options) => {
     };
   }
 
+  if (!window.IntersectionObserver) {
+    disableAnimations();
+
+    throw Error(`
+      Your browser does not support IntersectionObserver!
+      Get a polyfill from here:
+      https://github.com/w3c/IntersectionObserver/tree/master/polyfill
+    `);
+  }
+
   if (!isDisabled()) {
     enable();
+  } else {
+    disableAnimations();
   }
 
   return {

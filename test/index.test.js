@@ -153,6 +153,24 @@ describe('Sal', () => {
 
       expect(firstIsAnimated).toBeFalsy();
     }));
+
+    it('should not launch animation when disabled', browser.run(async (engine, opts) => {
+      const page = await engine.newPage();
+      await page.goto(`${opts.rootUrl}/disabled.html`);
+
+      await page.waitFor(SELECTOR);
+
+      const firstIsAnimated = await page.$eval(SELECTOR, el => (
+        el.classList.contains('sal-animate')
+      ));
+
+      const bodyHasDisabledClass = await page.evaluate(() => (
+        document.body.classList.contains('sal-disabled')
+      ));
+
+      expect(firstIsAnimated).toBeFalsy();
+      expect(bodyHasDisabledClass).toBeTruthy();
+    }));
   });
 });
 
