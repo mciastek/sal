@@ -7,6 +7,7 @@ Performance focused, lightweight (less than **2.5 kb**) scroll animation library
 ## Table of Contents
 - [Install](#install)
 - [Usage](#usage)
+- [Animations](#animations)
 - [Options](#options)
 - [API](#api)
 - [License](#license)
@@ -46,7 +47,7 @@ And remember to add styles
 In HTML, add `data-sal`, which value is animation name, e.g.:
 
 ```html
-<div data-sal="fade"></div>
+<div data-sal="<animation-name>"></div>
 ```
 
 Then simply init Sal in your script file:
@@ -56,6 +57,34 @@ sal();
 ```
 
 It will look for an element with `data-sal` attribute and launch animation, when it's in viewport.
+
+## Animations
+With **sal.js** you can easily change animation's options, by adding a proper `data` attribute:
+- `data-sal-duration` - changes animation's duration
+- `data-sal-delay` - adds delay to animation
+- `data-sal-easing` - sets easing for the animation
+
+For example:
+```html
+<div
+  data-sal="slide-up"
+  data-sal-delay='300'
+  data-sal-easing='ease-out-bounce'
+></div>
+```
+
+Library supports several animations:
+- `fade`
+- `slide-up`
+- `slide-down`
+- `slide-left`
+- `slide-right`
+- `zoom-in`
+- `zoom-out`
+- `flip-up`
+- `flip-down`
+- `flip-left`
+- `flip-right`
 
 ## Options
 

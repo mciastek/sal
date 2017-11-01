@@ -100,11 +100,11 @@ body.sal-disabled [data-sal|='fade'] {
 }
 
 [data-sal='slide-up'] {
-  transform: translateY(-$sal-slide-offset);
+  transform: translateY($sal-slide-offset);
 }
 
 [data-sal='slide-down'] {
-  transform: translateY($sal-slide-offset);
+  transform: translateY(-$sal-slide-offset);
 }
 
 [data-sal='slide-left'] {
