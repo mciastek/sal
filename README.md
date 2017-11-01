@@ -129,4 +129,4 @@ scrollAnimations.disable();
 
 ## License
 
-Created by [Mirosław Ciastek](github.com/mciastek). Released under the [MIT License](https://github.com/mciastek/sal/blob/master/LICENSE).
+Created by [Mirosław Ciastek](https://github.com/mciastek). Released under the [MIT License](https://github.com/mciastek/sal/blob/master/LICENSE).
