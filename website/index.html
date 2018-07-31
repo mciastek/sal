@@ -11,17 +11,70 @@
 <body>
   <main>
     <header class="page-header">
-      <h1 class="page-header__title" data-sal="fade" data-sal-delay="500">Sal</h1>
+      <h1 class="page-header__title">Sal.js</h1>
     </header>
 
     <section class="content">
+      <svg
+        class="shape cross"
+        data-sal="zoom-in"
+        data-sal-delay="500"
+        width="48px"
+        height="48px"
+        viewBox="0 0 48 48"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <path d="M22,2 L22,44" stroke-width="4" stroke-linecap="round"></path>
+        <path d="M44,22 L2,22" stroke-width="4" stroke-linecap="round"></path>
+      </svg>
 
+      <svg
+        class="shape pink circle"
+        width="68px"
+        height="68px"
+        viewBox="0 0 68 68"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <circle cx="34" cy="34" r="30" stroke-width="4" stroke-linecap="round"></circle>
+      </svg>
+
+      <svg
+        class="shape blue rect"
+        width="68px"
+        height="68px"
+        viewBox="0 0 68 68"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <rect x="2" y="2" width="60" height="60" rx="3" stroke-width="4" stroke-linecap="round"></rect>
+      </svg>
+
+      <svg
+        class="shape green triangle"
+        width="68px"
+        height="68px"
+        viewBox="0 0 68 68"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+          <g transform="translate(-168.000000, -72.000000)">
+            <path d="M204.683282,76.3665631 L229.82918,126.658359 C230.570147,128.140295 229.969474,129.942314 228.487539,130.683282 C228.070973,130.891565 227.611633,131 227.145898,131 L176.854102,131 C175.197248,131 173.854102,129.656854 173.854102,128 C173.854102,127.534265 173.962537,127.074926 174.17082,126.658359 L199.316718,76.3665631 C200.057686,74.8846277 201.859705,74.2839546 203.341641,75.0249224 C203.922223,75.3152135 204.39299,75.7859809 204.683282,76.3665631 Z" stroke-width="4" stroke-linecap="round"></path>
+          </g>
+      </svg>
     </section>
   </main>
 
   <script src="../dist/sal.js"></script>
   <script>
-    sal();
+    sal({
+      once: false
+    });
   </script>
 </body>
 </html>

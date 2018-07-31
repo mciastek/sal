@@ -1,14 +1,77 @@
+:root {
+  --border-color: #470102;
+  --background-color: #fff;
+  --sweet-pink: #fd9dae;
+  --blue: #a9faf0;
+  --green: #d8e66f;
+  --cherub: #f6ccf5;
+  --sand: #ebdfd9;
+}
+
 body {
-  background-color: #1abc9c;
-  color: #ecf0f1;
+  background-color: var(--background-color);
+  color: var(--border-color);
   font-family: 'Cabin', sans-serif;
+  height: 1500px;
 }
 
 .page-header {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
   padding: 45px 0;
   text-align: center;
 }
 
 .page-header__title {
   font-size: 36px;
+}
+
+.cross,
+.circle,
+.rect,
+.triangle {
+  stroke: var(--border-color);
+}
+
+.shape {
+  position: absolute;
+}
+
+.shape.pink {
+  fill: var(--sweet-pink);
+}
+
+.shape.blue {
+  fill: var(--blue);
+}
+
+.shape.green {
+  fill: var(--green);
+}
+
+.shape.sand {
+  fill: var(--sand);
+}
+
+.shape:nth-child(1) {
+  top: 10%;
+  left: 20%;
+}
+
+.shape:nth-child(2) {
+  top: 25%;
+  right: 20%;
+}
+
+.shape:nth-child(3) {
+  top: 50%;
+  right: 30%;
+}
+
+.shape:nth-child(4) {
+  top: 60%;
+  left: 35%;
 }
