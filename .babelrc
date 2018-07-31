@@ -2,5 +2,15 @@
   "presets": [
     "es2015",
     "stage-0"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        ["transform-runtime", {
+          "polyfill": false,
+          "regenerator": true,
+        }]
+      ]
+    }
+  }
 }
