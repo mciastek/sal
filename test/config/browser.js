@@ -6,6 +6,9 @@ const path = require('path');
 
 const options = {
   rootUrl: `file://${path.resolve(__dirname, '..', 'fixtures')}`,
+  puppeteer: {
+    args: ['--no-sandbox'],
+  },
 };
 
 /**
