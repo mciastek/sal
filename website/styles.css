@@ -15,7 +15,13 @@ body {
   height: 1500px;
 }
 
-.page-header {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.header {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -25,8 +31,34 @@ body {
   text-align: center;
 }
 
-.page-header__title {
+.header__title {
   font-size: 36px;
+}
+
+.content {
+  padding: 64px 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+
+.row + .row {
+  margin-top: 96px;
+}
+
+.column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row:nth-child(2n) .column {
+  justify-content: space-around;
 }
 
 .cross,
@@ -34,10 +66,6 @@ body {
 .rect,
 .triangle {
   stroke: var(--border-color);
-}
-
-.shape {
-  position: absolute;
 }
 
 .shape.pink {
@@ -56,22 +84,17 @@ body {
   fill: var(--sand);
 }
 
-.shape:nth-child(1) {
-  top: 10%;
-  left: 20%;
-}
+@media only screen and (min-width: 768px) {
+  .column {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 
-.shape:nth-child(2) {
-  top: 25%;
-  right: 20%;
-}
+  .column:first-of-type {
+    padding-right: 128px;
+  }
 
-.shape:nth-child(3) {
-  top: 50%;
-  right: 30%;
-}
-
-.shape:nth-child(4) {
-  top: 60%;
-  left: 35%;
+  .column + .column {
+    padding-left: 128px;
+  }
 }
