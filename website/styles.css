@@ -84,6 +84,10 @@ body {
   fill: var(--sand);
 }
 
+.shape.light-pink {
+  fill: var(--cherub);
+}
+
 @media only screen and (min-width: 768px) {
   .column {
     flex: 0 0 50%;
