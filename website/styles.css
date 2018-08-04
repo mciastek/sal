@@ -6,6 +6,9 @@
   --green: #d8e66f;
   --cherub: #f6ccf5;
   --sand: #ebdfd9;
+  --wild-watermelon: #fd5170;
+  --wild-sand: #f7f7f7;
+  --heliotrope: #ec45fe;
 }
 
 body {
@@ -23,20 +26,64 @@ body {
 
 .header {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 2;
-  transform: translate(-50%, -50%);
-  padding: 45px 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 0 16px;
+  background-color: #fff;
 }
 
 .header__title {
   font-size: 36px;
+  margin: 0;
+}
+
+.header__title + .header__subtitle {
+  margin-left: auto;
+}
+
+.header__link {
+  display: inline-block;
+  height: 32px;
+  padding: 0 16px;
+  line-height: 32px;
+  border-radius: 16px;
+  color: #fff;
+  background-color: var(--wild-watermelon);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.header__link:hover {
+  background-color: var(--heliotrope);
 }
 
 .content {
-  padding: 64px 0;
+  padding-top: 80px;
+  padding-bottom: 64px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  padding: 0 16px;
+  background-color: var(--wild-sand);
+}
+
+.footer__link {
+  color: var(--wild-watermelon);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__link:hover {
+  color: var(--heliotrope);
 }
 
 .row {
@@ -46,7 +93,6 @@ body {
   padding: 0 32px;
 }
 
-
 .row + .row {
   margin-top: 96px;
 }
@@ -55,17 +101,36 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.column + .column {
+  margin-top: 16px;
 }
 
 .row:nth-child(2n) .column {
   justify-content: space-around;
 }
 
-.cross,
-.circle,
-.rect,
-.triangle {
-  stroke: var(--border-color);
+.shape.cross.pink {
+  stroke: var(--sweet-pink);
+}
+
+.shape.cross.blue {
+  stroke: var(--blue);
+}
+
+.shape.cross.green {
+  stroke: var(--green);
+}
+
+.shape.cross.sand {
+  stroke: var(--sand);
+}
+
+.shape.cross.light-pink {
+  stroke: var(--cherub);
 }
 
 .shape.pink {
@@ -89,6 +154,25 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
+  .header {
+    top: 50%;
+    right: auto;
+    left: 50%;
+    display: block;
+    height: auto;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .header__title + .header__subtitle {
+    margin-top: 16px;
+    margin-left: 0;
+  }
+
+  .content {
+    padding-top: 64px;
+  }
+
   .column {
     flex: 0 0 50%;
     max-width: 50%;
@@ -99,6 +183,7 @@ body {
   }
 
   .column + .column {
+    margin-top: 0;
     padding-left: 128px;
   }
 }

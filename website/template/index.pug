@@ -4,6 +4,7 @@ include shape.pug
   var shapes = ['cross', 'triangle', 'circle', 'rect']
   var animations = ['slide-up', 'zoom-in', 'flip-up', 'fade-in']
   var colors = ['blue', 'pink', 'green', 'sand', 'light-pink']
+  var delay = 300
   var columnsInRow = 2
   var minShapesInColumn = 1
   var maxShapesInColumn = 2
@@ -20,7 +21,8 @@ include shape.pug
       collection.push({
         shape: getRandomProp(shapes),
         animation: getRandomProp(animations),
-        color: getRandomProp(colors)
+        color: getRandomProp(colors),
+        delay: Math.round(((Math.random() * delay)) / 50) * 50
       })
     }
 
@@ -83,6 +85,8 @@ head
 main
   header.header
     h1.header__title Sal.js
+    p.header__subtitle
+      a.header__link(href='https://github.com/mciastek/sal') Github / Docs
   section.content
     - var rows = generateRows()
       each row in rows
@@ -90,7 +94,13 @@ main
           each column in row
             .column
               each shape in column
-                +shape(shape.shape, shape.animation, shape.color)
+                +shape(shape.shape, shape.animation, shape.color, shape.delay)
+
+  footer.footer
+    small
+      ='Created with ❤️by '
+      a.footer__link(href='https://github.com/mciastek' target='_blank' rel='noopener')
+        | Mirosław Ciastek
 script(src='../dist/sal.js')
 script.
   sal({

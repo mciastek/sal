@@ -1,19 +1,19 @@
-mixin shape(name, animation, color = 'blue')
+mixin shape(name, animation, color = 'blue', delay = 0)
   case name
     when 'cross'
-      svg.shape.cross(data-sal=animation, width='48px', height='48px', viewbox='0 0 48 48', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+      svg.shape.cross(class=color, data-sal=animation, data-sal-delay=delay width='48px', height='48px', viewbox='0 0 48 48', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
         path(d='M22,2 L22,44', stroke-width='4', stroke-linecap='round')
         path(d='M44,22 L2,22', stroke-width='4', stroke-linecap='round')
     when 'triangle'
-      svg.shape.triangle(class=color, data-sal=animation, width='68px', height='68px', viewbox='0 0 68 68', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+      svg.shape.triangle(class=color, data-sal=animation, data-sal-delay=delay width='68px', height='68px', viewbox='0 0 68 68', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
         g(transform='translate(-168.000000, -72.000000)')
           path(d='M204.683282,76.3665631 L229.82918,126.658359 C230.570147,128.140295 229.969474,129.942314 228.487539,130.683282 C228.070973,130.891565 227.611633,131 227.145898,131 L176.854102,131 C175.197248,131 173.854102,129.656854 173.854102,128 C173.854102,127.534265 173.962537,127.074926 174.17082,126.658359 L199.316718,76.3665631 C200.057686,74.8846277 201.859705,74.2839546 203.341641,75.0249224 C203.922223,75.3152135 204.39299,75.7859809 204.683282,76.3665631 Z', stroke-width='4', stroke-linecap='round')
     when 'circle'
-      svg.shape.pink.circle(class=color, data-sal=animation, width='68px', height='68px', viewbox='0 0 68 68', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+      svg.shape.pink.circle(class=color, data-sal=animation, data-sal-delay=delay width='68px', height='68px', viewbox='0 0 68 68', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
         circle(cx='34', cy='34', r='30', stroke-width='4', stroke-linecap='round')
     when 'rect'
     default
-      svg.shape.rect(class=color, data-sal=animation, width='68px', height='68px', viewbox='0 0 68 68', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+      svg.shape.rect(class=color, data-sal=animation, data-sal-delay=delay width='68px', height='68px', viewbox='0 0 68 68', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
         rect(x='2', y='2', width='60', height='60', rx='3', stroke-width='4', stroke-linecap='round')
 
 
