@@ -78,15 +78,17 @@ include shape.pug
 head
   meta(charset='UTF-8')
   title Sal - Scroll Animation Library
-  link(href='https://fonts.googleapis.com/css?family=Cabin:400,700', rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700', rel='stylesheet')
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css')
   link(rel='stylesheet', href='../dist/sal.css')
   link(rel='stylesheet', href='styles.css')
 main
   header.header
+    img.header__logo(src='logo.svg' alt='')
     h1.header__title Sal.js
     p.header__subtitle
-      a.header__link(href='https://github.com/mciastek/sal') Github / Docs
+      | Lightweight scroll animation library
+    a.header__button(href='https://github.com/mciastek/sal') Github / Docs
   section.content
     - var rows = generateRows()
       each row in rows

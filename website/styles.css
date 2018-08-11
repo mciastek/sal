@@ -14,7 +14,7 @@
 body {
   background-color: var(--background-color);
   color: var(--border-color);
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   height: 1500px;
 }
 
@@ -22,6 +22,12 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+main {
+  background-color: var(--wild-sand);
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .header {
@@ -34,23 +40,37 @@ body {
   align-items: center;
   height: 80px;
   padding: 0 16px;
-  background-color: #fff;
+  background-color: var(--wild-sand);
+}
+
+.header__logo {
+  width: 87px;
+  height: 49px;
+}
+
+.header__logo + .header__title {
+  margin-left: 8px;
 }
 
 .header__title {
-  font-size: 36px;
+  font-size: 30px;
   margin: 0;
+  margin-bottom: -6px;
 }
 
-.header__title + .header__subtitle {
+.header__subtitle {
+  display: none;
+}
+
+.header__subtitle+ .header__button {
   margin-left: auto;
 }
 
-.header__link {
+.header__button {
   display: inline-block;
   height: 32px;
   padding: 0 16px;
-  line-height: 32px;
+  line-height: 34px;
   border-radius: 16px;
   color: #fff;
   background-color: var(--wild-watermelon);
@@ -58,13 +78,14 @@ body {
   transition: background-color 0.2s;
 }
 
-.header__link:hover {
+.header__button:hover {
   background-color: var(--heliotrope);
 }
 
 .content {
-  padding-top: 80px;
-  padding-bottom: 64px;
+  padding-top: 112px;
+  padding-bottom: 32px;
+  background-color: #fff;
 }
 
 .footer {
@@ -154,6 +175,11 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
+  main {
+    background-color: initial;
+    padding: 0;
+  }
+
   .header {
     top: 50%;
     right: auto;
@@ -162,15 +188,37 @@ body {
     height: auto;
     transform: translate(-50%, -50%);
     text-align: center;
+    background-color: transparent;
   }
 
-  .header__title + .header__subtitle {
+  .header__logo {
+    width: 124px;
+    height: 70px;
+  }
+
+  .header__logo + .header__title {
     margin-top: 16px;
     margin-left: 0;
   }
 
+  .header__title {
+    margin: 0;
+  }
+
+  .header__title + .header__subtitle {
+    margin: 8px 0 0;
+  }
+
+  .header__subtitle {
+    display: block;
+  }
+
+  .header__subtitle + .header__button {
+    margin-top: 32px;
+  }
+
   .content {
-    padding-top: 64px;
+    padding-top: 32px;
   }
 
   .column {
