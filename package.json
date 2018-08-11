@@ -11,7 +11,8 @@
     "url": "https://github.com/mciastek/sal/issues"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "index.d.ts"
   ],
   "licenses": [
     {
