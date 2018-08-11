@@ -39,7 +39,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       template: './website/template/index.pug',
-      filename: '../website/index.html',
+      filename: path.resolve(__dirname, './index.html'),
       inject: false,
     }),
   ],

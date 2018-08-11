@@ -115,18 +115,18 @@ head
     content=keywords
   )
   meta(name='description', content='Performance focused, lightweight JavaScript scroll animation library')
-  link(rel='apple-touch-icon', sizes='180x180', href='images/apple-touch-icon.png')
-  link(rel='icon', type='image/png', sizes='32x32', href='images/favicon-32x32.png')
-  link(rel='icon', type='image/png', sizes='16x16', href='images/favicon-16x16.png')
-  link(rel='manifest', href='images/manifest.json')
+  link(rel='apple-touch-icon', sizes='180x180', href='website/images/apple-touch-icon.png')
+  link(rel='icon', type='image/png', sizes='32x32', href='website/images/favicon-32x32.png')
+  link(rel='icon', type='image/png', sizes='16x16', href='website/images/favicon-16x16.png')
+  link(rel='manifest', href='website/images/manifest.json')
   meta(name='theme-color', content='#ffffff')
   link(href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700', rel='stylesheet')
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css')
-  link(rel='stylesheet', href='../dist/sal.css')
-  link(rel='stylesheet', href='styles.css')
+  link(rel='stylesheet', href='dist/sal.css')
+  link(rel='stylesheet', href='website/styles.css')
 main
   header.header
-    img.header__logo(src='images/logo.svg' alt='')
+    img.header__logo(src='website/images/logo.svg' alt='')
     h1.header__title Sal.js
     p.header__subtitle
       | Lightweight scroll animation library
@@ -145,7 +145,7 @@ main
       ='Created with ❤️by '
       a.footer__link(href='https://github.com/mciastek' target='_blank' rel='noopener')
         | Mirosław Ciastek
-script(src='../dist/sal.js')
+script(src='dist/sal.js')
 script.
   sal({
     once: false
