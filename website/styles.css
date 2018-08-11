@@ -1,19 +1,21 @@
 :root {
-  --border-color: #470102;
-  --background-color: #fff;
-  --sweet-pink: #fd9dae;
-  --blue: #a9faf0;
-  --green: #d8e66f;
-  --cherub: #f6ccf5;
-  --sand: #ebdfd9;
-  --wild-watermelon: #fd5170;
-  --wild-sand: #f7f7f7;
-  --heliotrope: #ec45fe;
+  --primary: #fff;
+  --secondary: #f7f7f7;
+  --accent: #ec45fe;
+  --text: #34083a;
+  --text-secondary: #756c75;
+
+  --blue: #7ff2ff;
+  --green: #6dffaf;
+  --red: #fb163e;
+  --violet: #c88eff;
+  --yellow: #ffe16b;
+  --pink: #ff7f9f;
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--border-color);
+  background-color: var(--primary);
+  color: var(--text);
   font-family: 'Josefin Sans', sans-serif;
   height: 1500px;
 }
@@ -25,7 +27,8 @@ body {
 }
 
 main {
-  background-color: var(--wild-sand);
+  overflow: hidden;
+  background-color: var(--secondary);
   padding-left: 16px;
   padding-right: 16px;
 }
@@ -40,7 +43,7 @@ main {
   align-items: center;
   height: 80px;
   padding: 0 16px;
-  background-color: var(--wild-sand);
+  background-color: var(--secondary);
 }
 
 .header__logo {
@@ -60,6 +63,7 @@ main {
 
 .header__subtitle {
   display: none;
+  color: var(--text-secondary);
 }
 
 .header__subtitle+ .header__button {
@@ -73,13 +77,13 @@ main {
   line-height: 34px;
   border-radius: 16px;
   color: #fff;
-  background-color: var(--wild-watermelon);
+  background-color: var(--violet);
   text-decoration: none;
   transition: background-color 0.2s;
 }
 
 .header__button:hover {
-  background-color: var(--heliotrope);
+  background-color: var(--accent);
 }
 
 .content {
@@ -94,17 +98,18 @@ main {
   justify-content: center;
   height: 80px;
   padding: 0 16px;
-  background-color: var(--wild-sand);
+  background-color: var(--secondary);
+  color: var(--text-secondary);
 }
 
 .footer__link {
-  color: var(--wild-watermelon);
+  color: var(--violet);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer__link:hover {
-  color: var(--heliotrope);
+  color: var(--accent);
 }
 
 .row {
@@ -135,7 +140,7 @@ main {
 }
 
 .shape.cross.pink {
-  stroke: var(--sweet-pink);
+  stroke: var(--pink);
 }
 
 .shape.cross.blue {
@@ -146,16 +151,20 @@ main {
   stroke: var(--green);
 }
 
-.shape.cross.sand {
-  stroke: var(--sand);
+.shape.cross.red {
+  stroke: var(--red);
 }
 
-.shape.cross.light-pink {
-  stroke: var(--cherub);
+.shape.cross.violet {
+  stroke: var(--violet);
+}
+
+.shape.cross.yellow {
+  stroke: var(--yellow);
 }
 
 .shape.pink {
-  fill: var(--sweet-pink);
+  fill: var(--pink);
 }
 
 .shape.blue {
@@ -166,12 +175,16 @@ main {
   fill: var(--green);
 }
 
-.shape.sand {
-  fill: var(--sand);
+.shape.red {
+  fill: var(--red);
 }
 
-.shape.light-pink {
-  fill: var(--cherub);
+.shape.violet {
+  fill: var(--violet);
+}
+
+.shape.yellow {
+  fill: var(--yellow);
 }
 
 @media only screen and (min-width: 768px) {
@@ -227,11 +240,11 @@ main {
   }
 
   .column:first-of-type {
-    padding-right: 128px;
+    padding-right: 144px;
   }
 
   .column + .column {
     margin-top: 0;
-    padding-left: 128px;
+    padding-left: 144px;
   }
 }
