@@ -1,0 +1,152 @@
+include shape.pug
+
+-
+  var shapes = [
+    'cross',
+    'triangle',
+    'circle',
+    'hexagon',
+    'pentagon',
+    'diamond',
+    'star',
+    'star-2',
+    'rect'
+  ]
+  var animations = ['slide-up', 'zoom-in', 'fade-in']
+  var colors = [
+    'blue',
+    'green',
+    'violet',
+    'yellow',
+    'pink'
+  ]
+  var delay = 300
+  var columnsInRow = 2
+  var minShapesInColumn = 1
+  var maxShapesInColumn = 2
+  var shapesNum = 100
+
+  var getRandomProp = function(props) {
+    return props[~~(Math.random() * props.length)]
+  }
+
+  var generateShapes = function() {
+    var collection = []
+
+    for (var i = 0; i < shapesNum; i++) {
+      collection.push({
+        shape: getRandomProp(shapes),
+        animation: getRandomProp(animations),
+        color: getRandomProp(colors),
+        delay: Math.round(((Math.random() * delay)) / 50) * 50
+      })
+    }
+
+    return collection
+  }
+
+  var generatedShapes = generateShapes()
+
+  var generateColumns = function() {
+    var shapes = generateShapes()
+    var collection = []
+
+    while (shapes.length) {
+      var removeNum = ~~(Math.random() * maxShapesInColumn) + minShapesInColumn
+      var column = []
+
+      for (var i = 0; i < removeNum; i++) {
+        var shape = shapes.pop()
+
+        if (shape) {
+          column.push(shape)
+        }
+      }
+
+      if (column.length) {
+        collection.push(column)
+      }
+    }
+
+    return collection
+  }
+
+  var generateRows = function() {
+    var columns = generateColumns()
+    var rowsNum = columns.length / columnsInRow
+    var collection = []
+
+    for (var i = 0; i < rowsNum; i++) {
+      var row = []
+
+      for (var j = 0; j < columnsInRow; j++) {
+        row.push(columns[i + j])
+      }
+
+      if (row.length) {
+        collection.push(row)
+      }
+    }
+
+    return collection
+  }
+
+-
+  var keywords = [
+    'scroll',
+    'scrolling',
+    'animate',
+    'animation',
+    'css',
+    'javascript',
+    'performant',
+    'performance',
+    'intersection observer',
+    'cutting edge',
+    'sal',
+  ].join(', ')
+
+head
+  meta(charset='UTF-8')
+  title Sal - Lightweight scroll animation library
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  meta(
+    name='keywords',
+    content=keywords
+  )
+  meta(name='description', content='Performance focused, lightweight JavaScript scroll animation library')
+  link(rel='apple-touch-icon', sizes='180x180', href='website/images/apple-touch-icon.png')
+  link(rel='icon', type='image/png', sizes='32x32', href='website/images/favicon-32x32.png')
+  link(rel='icon', type='image/png', sizes='16x16', href='website/images/favicon-16x16.png')
+  link(rel='manifest', href='website/images/manifest.json')
+  meta(name='theme-color', content='#ffffff')
+  link(href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700', rel='stylesheet')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css')
+  link(rel='stylesheet', href='dist/sal.css')
+  link(rel='stylesheet', href='website/styles.css')
+main
+  header.header
+    img.header__logo(src='website/images/logo.svg' alt='')
+    h1.header__title Sal.js
+    p.header__subtitle
+      | Lightweight scroll animation library
+    a.header__button(href='https://github.com/mciastek/sal') Github / Docs
+  section.content
+    - var rows = generateRows()
+      each row in rows
+        .row
+          each column in row
+            .column
+              each shape in column
+                +shape(shape.shape, shape.animation, shape.color, shape.delay)
+
+  footer.footer
+    small
+      ='Created with ❤️by '
+      a.footer__link(href='https://github.com/mciastek' target='_blank' rel='noopener')
+        | Mirosław Ciastek
+script(src='dist/sal.js')
+script.
+  sal({
+    once: false
+  });
