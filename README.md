@@ -4,6 +4,8 @@ Performance focused, lightweight (less than **2.5 kb** without Gzip) scroll anim
 
 **Sal** (_Scroll Animation Library_) was created to provide a performant and lightweight solution for animating elements on scroll. It's based on the [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), which gives amazing performance in terms of checking the element's presence in the viewport.
 
+**Note:** Intersection Observer API is an experimental technology so be sure to consult the [browser compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Browser_compatibility) and consider using a [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).
+
 ## Table of Contents
 - [Install](#install)
 - [Usage](#usage)
