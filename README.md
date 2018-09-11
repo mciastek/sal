@@ -1,6 +1,6 @@
 # Sal [![npm version](https://badge.fury.io/js/sal.js.svg)](https://www.npmjs.com/package/sal.js) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mciastek/sal/blob/master/LICENSE) [![Build Status](https://travis-ci.org/mciastek/sal.svg?branch=master)](https://travis-ci.org/mciastek/sal)
 
-Performance focused, lightweight (less than **2.5 kb** without Gzip) scroll animation library, written in vanilla JavaScript. No dependencies!
+Performance focused, lightweight (less than **2.8 kb**) scroll animation library, written in vanilla JavaScript. No dependencies!
 
 **Sal** (_Scroll Animation Library_) was created to provide a performant and lightweight solution for animating elements on scroll. It's based on the [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), which gives amazing performance in terms of checking the element's presence in the viewport.
 
@@ -24,7 +24,7 @@ $ npm install --save sal.js
 $ yarn add sal.js
 ```
 
-Load it with your favorite module loader or use as a global
+Load it with your favorite module loader or use as a global variable
 
 ```js
 // ES6 modules
