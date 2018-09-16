@@ -75,7 +75,7 @@ $sal-easings: (
 }
 
 @each $key, $value in $sal-easings {
-  [data-sal][data-sal-easing='${key}'] {
+  [data-sal][data-sal-easing='#{$key}'] {
     transition-timing-function: $value;
   }
 }
