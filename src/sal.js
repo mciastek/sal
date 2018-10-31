@@ -13,6 +13,7 @@ let options = {
   threshold: 0.5,
   animateClassName: 'sal-animate',
   disabledClassName: 'sal-disabled',
+  animateEvent: 'sal-animate',
   selector: '[data-sal]',
   once: true,
   disabled: false,
@@ -25,20 +26,34 @@ let elements = [];
 let intersectionObserver = null;
 
 /**
- * Launch animation by adding class
- * @param  {Node} element
+ * Dispatches the animate event on the intersection observer entry.
+ * @param {IntersectionObserverEntry} detail The entry to fire event on.
  */
-const animate = element => (
-  element.classList.add(options.animateClassName)
-);
+const fireEvent = (entry) => {
+  const e = new CustomEvent(options.animateEvent, {
+    bubbles: true,
+    detail: entry,
+  });
+
+  entry.target.dispatchEvent(e);
+};
+
+/**
+ * Launch animation by adding class
+ * @param  {IntersectionObserverEntry} entry
+ */
+const animate = (entry) => {
+  entry.target.classList.add(options.animateClassName);
+  fireEvent(entry);
+};
 
 /**
  * Reverse animation by removing class
- * @param  {Node} element
+ * @param  {IntersectionObserverEntry} entry
  */
-const reverse = element => (
-  element.classList.remove(options.animateClassName)
-);
+const reverse = (entry) => {
+  entry.target.classList.remove(options.animateClassName);
+};
 
 /**
  * Check if element was animated
@@ -82,13 +97,13 @@ const isDisabled = () => (
 const onIntersection = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.intersectionRatio >= options.threshold) {
-      animate(entry.target);
+      animate(entry);
 
       if (options.once) {
         observer.unobserve(entry.target);
       }
     } else if (!options.once) {
-      reverse(entry.target);
+      reverse(entry);
     }
   });
 };

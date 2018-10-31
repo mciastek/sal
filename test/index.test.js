@@ -171,6 +171,29 @@ describe('Sal', () => {
       expect(firstIsAnimated).toBeFalsy();
       expect(bodyHasDisabledClass).toBeTruthy();
     }));
+
+    it('should fire animate event', browser.run(async (engine, opts) => {
+      const page = await engine.newPage();
+      await page.goto(`${opts.rootUrl}/default.html`);
+
+      await page.waitFor(SELECTOR);
+
+      const eventFiredOnFifth = await page.evaluate((selector) => {
+        const promise = new Promise((resolve) => {
+          document.addEventListener('sal-animate', event => {
+            resolve(true);
+          });
+        });
+
+        const fifthItem = document.querySelector(selector);
+        const posY = fifthItem.getBoundingClientRect().top + window.scrollY;
+        window.scrollBy(0, posY);
+
+        return promise;
+      }, FIFTH_ITEM_SELECTOR);
+
+      expect(eventFiredOnFifth).toBeTruthy();
+    }));
   });
 });
 
