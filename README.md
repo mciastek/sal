@@ -92,7 +92,7 @@ The library supports several animations:
 
 | Property | Type | Description | Default  |
 |---------------------------|-------------|---------------|---------|
-| `threshold` | Number | Percentage of an element's area that needs to be visible to launch animation (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | `0.5` |
+| `threshold` | Number | Percentage of an element's area that needs to be visible to launch animation, or an array of them (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | `0.5` |
 | `once` | Boolean | Defines if animation needs to be launched once | `true` |
 | `disable` | Boolean | Flag for disabling animations | `false` |
 

@@ -81,7 +81,7 @@ const isDisabled = () => (
  */
 const onIntersection = (entries, observer) => {
   entries.forEach((entry) => {
-    if (entry.intersectionRatio >= options.threshold) {
+    if (entry.isIntersecting) {
       animate(entry.target);
 
       if (options.once) {

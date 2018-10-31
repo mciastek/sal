@@ -142,7 +142,7 @@ describe('Sal', () => {
       const firstIsAnimated = await page.evaluate((selector) => {
         const firstItem = document.querySelector(selector);
 
-        window.scrollBy(0, window.innerHeight);
+        window.scrollBy(0, window.innerHeight + 1);
 
         return new Promise((resolve) => {
           setTimeout(() => {
