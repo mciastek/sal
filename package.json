@@ -1,6 +1,6 @@
 {
   "name": "sal.js",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Performance focused, lightweight scroll animation library",
   "main": "dist/sal.js",
   "repository": {
