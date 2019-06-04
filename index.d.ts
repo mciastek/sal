@@ -5,6 +5,8 @@ interface Options {
   threshold?: number;
   animateClassName?: string;
   disabledClassName?: string;
+  enterEventName?: string,
+  exitEventName?: string,
   selector?: string;
   once?: boolean;
   disabled?: boolean;
