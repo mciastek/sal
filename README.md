@@ -12,6 +12,7 @@ Performance focused, lightweight (less than **2.8 kb**) scroll animation library
 - [Animations](#animations)
 - [Options](#options)
 - [API](#api)
+- [Events](#events)
 - [License](#license)
 
 ## Install
@@ -113,6 +114,8 @@ sal({
 | `animateClassName` | String | Class name which triggers animation | `sal-animate` |
 | `disabledClassName` | String | Class name which defines the disabled state | `sal-disabled` |
 | `rootMargin` | String | Corresponds to root's bounding box margin (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin)) | `0% 50%` |
+| `enterEventName` | String | Enter event name (see [Events](#events)) | `sal:in` |
+| `exitEventName` | String | Exit event name (see [Events](#events)) | `sal:out` |
 
 ## API
 
@@ -127,6 +130,30 @@ Public methods are available after Sal's initialization:
 const scrollAnimations = sal();
 
 scrollAnimations.disable();
+```
+
+## Events
+
+This library supports events, fired when element is entering or exiting viewport (they are named `sal:in` and `sal:out` by default). Property `detail` is [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) object.
+
+
+You can attach listener to specific element.
+
+```js
+// Get element with ".animated" class, which has "data-sal" attribute
+const element = document.querySelector('.animated');
+
+element.addEventListener('sal:in', ({ detail }) => {
+  console.log('entering', detail.target);
+});
+```
+
+or to the whole document
+
+```js
+document.addEventListener('sal:out', ({ detail }) => {
+  console.log('exiting', detail.target);
+});
 ```
 
 ## License

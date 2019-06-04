@@ -171,6 +171,52 @@ describe('Sal', () => {
       expect(firstIsAnimated).toBeFalsy();
       expect(bodyHasDisabledClass).toBeTruthy();
     }));
+
+    describe('events', () => {
+      it('should fire enter event', browser.run(async (engine, opts) => {
+        const page = await engine.newPage();
+        await page.goto(`${opts.rootUrl}/default.html`);
+
+        await page.waitFor(SELECTOR);
+
+        const eventFiredOnFifth = await page.evaluate((selector) => {
+          const fifthItem = document.querySelector(selector);
+          const promise = new Promise((resolve) => {
+            fifthItem.addEventListener('sal:in', () => {
+              resolve(true);
+            });
+          });
+
+          const posY = fifthItem.getBoundingClientRect().top + window.scrollY;
+          window.scrollBy(0, posY);
+
+          return promise;
+        }, FIFTH_ITEM_SELECTOR);
+
+        expect(eventFiredOnFifth).toBeTruthy();
+      }));
+
+      it('should fire exit event', browser.run(async (engine, opts) => {
+        const page = await engine.newPage();
+        await page.goto(`${opts.rootUrl}/repeat.html`);
+
+        await page.waitFor(SELECTOR);
+
+        const eventFiredAtLeastOnce = await page.evaluate(() => {
+          const promise = new Promise((resolve) => {
+            document.addEventListener('sal:out', () => {
+              resolve(true);
+            });
+          });
+
+          window.scrollBy(0, document.body.scrollHeight);
+
+          return promise;
+        });
+
+        expect(eventFiredAtLeastOnce).toBeTruthy();
+      }));
+    });
   });
 });
 
