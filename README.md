@@ -72,7 +72,7 @@ For example:
 <div
   data-sal="slide-up"
   data-sal-delay="300"
-  data-sal-easing="ease-out-bounce"
+  data-sal-easing="ease-out"
 ></div>
 ```
 
