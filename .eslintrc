@@ -29,7 +29,7 @@
     "jest": true
   },
   "globals": {
-    "process": 1,
-    "module": 1
+    "process": "readonly",
+    "module": "readonly"
   }
 }

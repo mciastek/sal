@@ -61,7 +61,7 @@ const reverse = (entry) => {
  * Check if element was animated
  * @param  {Node} element
  */
-const isAnimated = element => (
+const isAnimated = (element) => (
   element.classList.contains(options.animateClassName)
 );
 
@@ -84,10 +84,10 @@ const disableAnimations = () => {
  * @return {Boolean}
  */
 const isDisabled = () => (
-  options.disabled ||
-  (
-    (typeof options.disabled === 'function') &&
-    options.disabled()
+  options.disabled
+  || (
+    (typeof options.disabled === 'function')
+    && options.disabled()
   )
 );
 
@@ -133,10 +133,10 @@ const enable = () => {
 
   elements = [].filter.call(
     document.querySelectorAll(options.selector),
-    element => !isAnimated(element, options.animateClassName),
+    (element) => !isAnimated(element, options.animateClassName),
   );
 
-  elements.forEach(element => intersectionObserver.observe(element));
+  elements.forEach((element) => intersectionObserver.observe(element));
 };
 
 /**

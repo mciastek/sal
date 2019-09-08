@@ -1,9 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SizePlugin = require('size-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: './src/sal.js',
   devtool: 'source-map',
   output: {
@@ -20,27 +21,33 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
       }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?minimize&sourceMap!postcss-loader!sass-loader',
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader?sourceMap',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.pug$/,
-        loader: 'pug-loader',
+        use: 'pug-loader',
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('sal.css'),
-    new webpack.optimize.UglifyJsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'sal.css',
+    }),
     new HtmlWebpackPlugin({
       template: './website/template/index.pug',
       filename: path.resolve(__dirname, './index.html'),
       inject: false,
+    }),
+    new SizePlugin({
+      writeFile: false,
     }),
   ],
 };

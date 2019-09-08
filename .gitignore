@@ -30,3 +30,6 @@ node_modules
 
 # Dev files to ignore
 dist/*.map
+
+# waiting for https://github.com/GoogleChromeLabs/size-plugin/issues/28
+size-plugin.json
