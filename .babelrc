@@ -1,15 +1,26 @@
 {
   "presets": [
-    "es2015",
-    "stage-0"
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ]
   ],
   "env": {
     "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ],
       "plugins": [
-        ["transform-runtime", {
-          "polyfill": false,
-          "regenerator": true,
-        }]
+        "@babel/transform-runtime"
       ]
     }
   }

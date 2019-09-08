@@ -1,9 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: './src/sal.js',
   devtool: 'source-map',
   output: {
@@ -25,7 +25,7 @@ module.exports = {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader?minimize&sourceMap!postcss-loader!sass-loader',
+          use: 'css-loader?sourceMap!postcss-loader!sass-loader',
         }),
       },
       {
@@ -36,7 +36,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('sal.css'),
-    new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       template: './website/template/index.pug',
       filename: path.resolve(__dirname, './index.html'),
