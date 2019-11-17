@@ -63,16 +63,16 @@ It will look for all elements with a `data-sal` attribute and launch their anima
 
 ## Animations
 In **sal.js** you can easily change animation's options, by adding a proper `data` attribute:
-- `data-sal-duration` - changes duration of the animation
-- `data-sal-delay` - adds delay to the animation
-- `data-sal-easing` - sets easing for the animation
+- `data-sal-duration` - changes duration of the animation (from 200 to 2000 ms)
+- `data-sal-delay` - adds delay to the animation (from 5 to 1000 ms)
+- `data-sal-easing` - sets easing for the animation (see [easings.net](https://easings.net/) for reference)
 
 For example:
 ```html
 <div
   data-sal="slide-up"
   data-sal-delay="300"
-  data-sal-easing="ease-out"
+  data-sal-easing="ease-out-back"
 ></div>
 ```
 
@@ -88,6 +88,22 @@ The library supports several animations:
 - `flip-down`
 - `flip-left`
 - `flip-right`
+
+Additionaly, when you want to customise animation's properties - `duration`, `delay` and `easing`, you can use [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to set any value you want. See the following example:
+
+```html
+<div
+  data-sal="slide-up"
+  style="--sal-duration: 3s; --sal-delay: 2s;"
+></div>
+```
+
+Supported custom properties:
+  - `--sal-duration`
+  - `--sal-delay`
+  - `--sal-easing`
+
+Remember, that you can use only data attributes (e.g. `data-sal-delay`) or CSS custom properties (e.g. `--sal-delay`). Data attributes have precedence over CSS custom properties.
 
 ## Options
 
@@ -158,4 +174,4 @@ document.addEventListener('sal:out', ({ detail }) => {
 
 ## License
 
-Created by [Mirosław Ciastek](https://github.com/mciastek). Released under the [MIT License](https://github.com/mciastek/sal/blob/master/LICENSE).
+Created by [Mirek Ciastek](https://github.com/mciastek). Released under the [MIT License](https://github.com/mciastek/sal/blob/master/LICENSE).
