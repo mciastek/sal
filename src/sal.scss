@@ -60,6 +60,9 @@ $sal-easings: (
 [data-sal] {
   transition-duration: $sal-animation-duration;
   transition-delay: $sal-animation-delay;
+  transition-duration: var(--sal-duration, $sal-animation-duration);
+  transition-delay: var(--sal-delay, $sal-animation-delay);
+  transition-timing-function: var(--sal-easing, map-get($sal-easings, 'ease'));
 }
 
 @for $i from 4 through 40 {
