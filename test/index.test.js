@@ -49,7 +49,11 @@ describe('Sal', () => {
       await page.waitFor(SELECTOR);
 
       const firstIsAnimated = await page.$eval(FIRST_ITEM_SELECTOR, (el) => (
-        el.classList.contains('sal-animate')
+        new Promise((resolve) => {
+          setTimeout(() => (
+            resolve(el.classList.contains('sal-animate'))
+          ), 100);
+        })
       ));
 
       expect(firstIsAnimated).toBeTruthy();
