@@ -5,6 +5,13 @@
 
 import './sal.scss';
 
+const SSR_MESSAGE = 'Sal was not initialised! Probably it is used in SSR.';
+
+const NOT_SUPPORTED_MESSAGE = ''
+  + 'Your browser does not support IntersectionObserver!\n'
+  + 'Get a polyfill from here:\n'
+  + 'https://github.com/w3c/IntersectionObserver/tree/master/polyfill';
+
 /**
  * Default options
  */
@@ -152,14 +159,23 @@ const init = (settings = options) => {
     };
   }
 
+  // Early return, when window object is not defined
+  // e.g. during Server Side Rendering
+  if (typeof window === 'undefined') {
+    // eslint-disable-next-line no-console
+    console.warn(SSR_MESSAGE);
+
+    return {
+      elements,
+      disable,
+      enable,
+    };
+  }
+
   if (!window.IntersectionObserver) {
     disableAnimations();
 
-    throw Error(`
-      Your browser does not support IntersectionObserver!
-      Get a polyfill from here:
-      https://github.com/w3c/IntersectionObserver/tree/master/polyfill
-    `);
+    throw Error(NOT_SUPPORTED_MESSAGE);
   }
 
   if (!isDisabled()) {
