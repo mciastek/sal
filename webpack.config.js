@@ -15,6 +15,7 @@ module.exports = {
     libraryTarget: 'umd',
     libraryExport: 'default',
     sourceMapFilename: '[file].map',
+    globalObject: 'this',
   },
   module: {
     rules: [
