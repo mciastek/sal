@@ -34,6 +34,27 @@ let elements = [];
 let intersectionObserver = null;
 
 /**
+ * Set options
+ * @param {Object} settings
+ */
+const setOptions = (settings) => {
+  if (settings && settings !== options) {
+    options = {
+      ...options,
+      ...settings,
+    };
+  }
+};
+
+/**
+ * Clear animation for given element
+ * @param {HTMLElement} element
+ */
+const clearAnimation = (element) => {
+  element.classList.remove(options.animateClassName);
+};
+
+/**
  * Dispatches the animate event on the intersection observer entry.
  * @param {IntersectionObserverEntry} detail The entry to fire event on.
  */
@@ -48,7 +69,7 @@ const fireEvent = (name, entry) => {
 
 /**
  * Launch animation by adding class
- * @param  {IntersectionObserverEntry} entry
+ * @param {IntersectionObserverEntry} entry
  */
 const animate = (entry) => {
   entry.target.classList.add(options.animateClassName);
@@ -57,16 +78,16 @@ const animate = (entry) => {
 
 /**
  * Reverse animation by removing class
- * @param  {IntersectionObserverEntry} entry
+ * @param {IntersectionObserverEntry} entry
  */
 const reverse = (entry) => {
-  entry.target.classList.remove(options.animateClassName);
+  clearAnimation(entry.target);
   fireEvent(options.exitEventName, entry);
 };
 
 /**
  * Check if element was animated
- * @param  {Node} element
+ * @param {HTMLElement} element
  */
 const isAnimated = (element) => (
   element.classList.contains(options.animateClassName)
@@ -84,6 +105,14 @@ const enableAnimations = () => {
  */
 const disableAnimations = () => {
   document.body.classList.add(options.disabledClassName);
+};
+
+/**
+ * Clears observer
+ */
+const clearObserver = () => {
+  intersectionObserver.disconnect();
+  intersectionObserver = null;
 };
 
 /**
@@ -122,9 +151,7 @@ const onIntersection = (entries, observer) => {
  */
 const disable = () => {
   disableAnimations();
-
-  intersectionObserver.disconnect();
-  intersectionObserver = null;
+  clearObserver();
 };
 
 /**
@@ -147,17 +174,26 @@ const enable = () => {
 };
 
 /**
+ * Reset instance and provide new settings
+ * @param {Object} settings
+ */
+const reset = (settings = {}) => {
+  clearObserver();
+
+  Array.from(document.querySelectorAll(options.selector))
+    .forEach(clearAnimation);
+
+  setOptions(settings);
+  enable();
+};
+
+/**
  * Init
  * @param  {Object} settings
  * @return {Object} public API
  */
 const init = (settings = options) => {
-  if (settings !== options) {
-    options = {
-      ...options,
-      ...settings,
-    };
-  }
+  setOptions(settings);
 
   // Early return, when window object is not defined
   // e.g. during Server Side Rendering
@@ -169,6 +205,7 @@ const init = (settings = options) => {
       elements,
       disable,
       enable,
+      reset,
     };
   }
 
@@ -188,6 +225,7 @@ const init = (settings = options) => {
     elements,
     disable,
     enable,
+    reset,
   };
 };
 

@@ -16,6 +16,7 @@ interface PublicAPI {
   elements: HTMLElement[];
   enable: () => void;
   disable: () => void;
+  reset: (settings?: Options) => void;
 }
 
 type Sal = (options?: Options) => PublicAPI;
