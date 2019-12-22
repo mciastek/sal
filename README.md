@@ -139,6 +139,7 @@ sal({
 |---------------------------|-------------|
 | `enable` | Enables animations |
 | `disable` | Disables animations |
+| `reset` | Resets instance and allows to pass new options (see [Options](#options)) |
 
 Public methods are available after Sal's initialization:
 
@@ -146,6 +147,20 @@ Public methods are available after Sal's initialization:
 const scrollAnimations = sal();
 
 scrollAnimations.disable();
+```
+
+### Changing options after intialization
+
+If you want to change Sal's options once it's been initialized, you should use `reset` method, that allows you to pass new set of options. It can be useful, when you would like to provide different options for specific viewport sizes.
+
+```js
+const scrollAnimations = sal();
+
+// Provide new options
+scrollAnimations.reset({
+  selector: 'animated-element',
+  once: true,
+});
 ```
 
 ## Events
