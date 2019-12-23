@@ -221,6 +221,70 @@ describe('Sal', () => {
         expect(eventFiredAtLeastOnce).toBeTruthy();
       }));
     });
+
+    describe('reset', () => {
+      it('should animate only selected elements', browser.run(async (engine, opts) => {
+        const page = await engine.newPage();
+        await page.goto(`${opts.rootUrl}/reset.html`);
+
+        await page.waitFor(SELECTOR);
+
+        await page.evaluate(async () => {
+          const animated = Array.from(document.querySelectorAll('.item:not(.after-reset)'));
+          window.scrollTo(0, animated[1].offsetTop);
+        });
+
+        await page.waitFor(100);
+
+        await page.evaluate(() => {
+          const animated = Array.from(document.querySelectorAll('.item:not(.after-reset)'));
+          window.scrollTo(0, animated[2].offsetTop);
+        });
+
+        await page.waitFor(100);
+
+        const animatedNumber = await page.$$eval('.sal-animate:not(.after-reset)', (items) => (
+          items.length
+        ));
+
+        expect(animatedNumber).toBe(3);
+      }));
+
+      describe('when settings are changed', () => {
+        it('should apply new settings', browser.run(async (engine, opts) => {
+          const page = await engine.newPage();
+          await page.goto(`${opts.rootUrl}/reset.html`);
+
+          await page.waitFor(SELECTOR);
+
+          await page.evaluate(() => {
+            window.scrollAnimations.reset({
+              selector: '[data-sal].after-reset',
+            });
+          });
+
+          await page.evaluate(() => {
+            const animated = Array.from(document.querySelectorAll('.item.after-reset'));
+            window.scrollTo(0, animated[0].offsetTop);
+          });
+
+          await page.waitFor(100);
+
+          await page.evaluate(() => {
+            const animated = Array.from(document.querySelectorAll('.item.after-reset'));
+            window.scrollTo(0, animated[1].offsetTop);
+          });
+
+          await page.waitFor(100);
+
+          const animatedNumber = await page.$$eval('.after-reset.sal-animate', (items) => (
+            items.length
+          ));
+
+          expect(animatedNumber).toBe(2);
+        }));
+      });
+    });
   });
 });
 
