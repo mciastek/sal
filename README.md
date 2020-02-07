@@ -187,6 +187,8 @@ document.addEventListener('sal:out', ({ detail }) => {
 });
 ```
 
+**Note:** This library uses [Custom Event](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) to trigger events on animated elements. Check the [compatibility table](https://caniuse.com/#search=custom%20event) to know if your browser supports it and use a [polyfill](https://github.com/kumarharsh/custom-event-polyfill) if needed.
+
 ## License
 
 Created by [Mirek Ciastek](https://github.com/mciastek). Released under the [MIT License](https://github.com/mciastek/sal/blob/master/LICENSE).
