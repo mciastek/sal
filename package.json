@@ -12,6 +12,7 @@
   },
   "files": [
     "dist/",
+    "src/",
     "index.d.ts"
   ],
   "licenses": [
