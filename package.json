@@ -1,6 +1,6 @@
 {
   "name": "sal.js",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "Performance focused, lightweight scroll animation library",
   "main": "dist/sal.js",
   "repository": {
@@ -36,7 +36,7 @@
     "test": "NODE_ENV=test jest --verbose",
     "test:watch": "NODE_ENV=test jest --verbose --watchAll"
   },
-  "author": "Mirosław Ciastek",
+  "author": "Mirek Ciastek",
   "license": "MIT",
   "devDependencies": {
     "@babel/plugin-transform-async-to-generator": "^7.8.3",
