@@ -229,6 +229,8 @@ describe('Sal', () => {
 
         await page.waitFor(SELECTOR);
 
+        await page.waitFor(100);
+
         await page.evaluate(async () => {
           const animated = Array.from(document.querySelectorAll('.item:not(.after-reset)'));
           window.scrollTo(0, animated[1].offsetTop);
