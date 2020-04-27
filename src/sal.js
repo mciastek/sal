@@ -137,10 +137,10 @@ const onIntersection = (entries, observer) => {
     if (entry.intersectionRatio >= options.threshold) {
       animate(entry);
 
-      if (options.once) {
+      if (options.once && entry.target.dataset.salRepeat === undefined) {
         observer.unobserve(entry.target);
       }
-    } else if (!options.once) {
+    } else if (!options.once || entry.target.dataset.salRepeat !== undefined) {
       reverse(entry);
     }
   });
