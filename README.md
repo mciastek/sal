@@ -13,6 +13,7 @@ Performance focused, lightweight (less than **2.8 kb**) scroll animation library
 - [Options](#options)
 - [API](#api)
 - [Events](#events)
+- [Misc](#misc)
 - [License](#license)
 
 ## Install
@@ -188,6 +189,32 @@ document.addEventListener('sal:out', ({ detail }) => {
 ```
 
 **Note:** This library uses [Custom Event](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) to trigger events on animated elements. Check the [compatibility table](https://caniuse.com/#search=custom%20event) to know if your browser supports it and use a [polyfill](https://github.com/kumarharsh/custom-event-polyfill) if needed.
+
+## Misc
+
+### No-JS support
+
+If you aim to support users that don't allow sites to use JavaScript, you should consider disabling animations' styles in the first place. You can use `<noscript />` element to inject required CSS. Here's an example:
+
+```html
+<noscript>
+  <style type="text/css">
+    [data-sal|='fade'] {
+      opacity: 1;
+    }
+
+    [data-sal|='slide'],
+    [data-sal|='zoom'] {
+      opacity: 1;
+      transform: none;
+    }
+
+    [data-sal|='flip'] {
+      transform: none;
+    }
+  </style>
+</noscript>
+```
 
 ## License
 
