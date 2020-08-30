@@ -134,13 +134,18 @@ const isDisabled = () => (
  */
 const onIntersection = (entries, observer) => {
   entries.forEach((entry) => {
+    const { target } = entry;
+    const hasRepeatFlag = target.dataset.salRepeat !== undefined;
+    const hasOnceFlag = target.dataset.salOnce !== undefined;
+    const shouldRepeat = hasRepeatFlag || !(hasOnceFlag || options.once);
+
     if (entry.intersectionRatio >= options.threshold) {
       animate(entry);
 
-      if (options.once) {
-        observer.unobserve(entry.target);
+      if (!shouldRepeat) {
+        observer.unobserve(target);
       }
-    } else if (!options.once) {
+    } else if (shouldRepeat) {
       reverse(entry);
     }
   });

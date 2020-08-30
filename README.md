@@ -90,6 +90,8 @@ The library supports several animations:
 - `flip-left`
 - `flip-right`
 
+### Duration and delay
+
 Additionaly, when you want to customise animation's properties - `duration`, `delay` and `easing`, you can use [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to set any value you want. See the following example:
 
 ```html
@@ -106,12 +108,18 @@ Supported custom properties:
 
 Remember, that you can use only data attributes (e.g. `data-sal-delay`) or CSS custom properties (e.g. `--sal-delay`). Data attributes have precedence over CSS custom properties.
 
+### Repeating animation
+
+By default every animation is played once. You can change it by setting `once` option to `false` (see [Options](#options)). What's more, it's possible to override this option for an animated element by adding one of the following attributes:
+- `data-sal-repeat` - forces animation replay
+- `data-sal-once` - plays animation once
+
 ## Options
 
 | Property | Type | Description | Default  |
 |---------------------------|-------------|---------------|---------|
 | `threshold` | Number | Percentage of an element's area that needs to be visible to launch animation (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | `0.5` |
-| `once` | Boolean | Defines if animation needs to be launched once | `true` |
+| `once` | Boolean | Defines if animation needs to be launched once. Can be overridden, see [Repeating Animation](#repeating-animation). | `true` |
 | `disable` | Boolean | Flag for disabling animations | `false` |
 
 You can set options during Sal's initialization, e.g.:

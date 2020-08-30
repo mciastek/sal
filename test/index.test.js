@@ -158,6 +158,72 @@ describe('Sal', () => {
       expect(firstIsAnimated).toBeFalsy();
     }));
 
+    describe('[data-sal-repeat]', () => {
+      it('should reverse animation on leave', browser.run(async (engine, opts) => {
+        const page = await engine.newPage();
+        await page.goto(`${opts.rootUrl}/repeat-once-attr.html`);
+
+        await page.waitFor(SELECTOR);
+
+        const firstIsAnimated = await page.evaluate((selector) => {
+          const firstItem = document.querySelector(selector);
+
+          window.scrollBy(0, window.innerHeight);
+
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(firstItem.classList.contains('sal-animate'));
+            }, 100);
+          });
+        }, FIRST_ITEM_SELECTOR);
+
+        expect(firstIsAnimated).toBeFalsy();
+      }));
+    });
+
+    describe('[data-sal-once]', () => {
+      it('should not reverse animation on leave', browser.run(async (engine, opts) => {
+        const page = await engine.newPage();
+        await page.goto(`${opts.rootUrl}/repeat-once-attr.html`);
+
+        await page.waitFor(SELECTOR);
+
+        await page.evaluate(() => {
+          window.scrollAnimations.reset({
+            once: false,
+          });
+        });
+
+        await page.evaluate((selector) => {
+          const fifthItem = document.querySelector(selector);
+
+          const posY = fifthItem.getBoundingClientRect().top + window.scrollY;
+          window.scrollBy(0, posY);
+        }, FIFTH_ITEM_SELECTOR);
+
+        await page.waitFor(100);
+
+        const [firstIsAnimated, fifthIsAnimated] = await page.evaluate((firstSelector, fifthSelector) => {
+          const firstItem = document.querySelector(firstSelector);
+          const fifthItem = document.querySelector(fifthSelector);
+
+          window.scrollBy(0, window.innerHeight);
+
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve([
+                firstItem.classList.contains('sal-animate'),
+                fifthItem.classList.contains('sal-animate'),
+              ]);
+            }, 100);
+          });
+        }, FIRST_ITEM_SELECTOR, FIFTH_ITEM_SELECTOR);
+
+        expect(firstIsAnimated).toBeFalsy();
+        expect(fifthIsAnimated).toBeTruthy();
+      }));
+    });
+
     it('should not launch animation when disabled', browser.run(async (engine, opts) => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/disabled.html`);
