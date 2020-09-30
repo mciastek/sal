@@ -200,6 +200,11 @@ document.addEventListener('sal:out', ({ detail }) => {
 
 ## Misc
 
+## Accessibility
+
+the library support [reduce motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) by checking the [operating system preferences](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#User_preferences) so it will turn off all the transitions and animations by default without any work required from your side.
+
+
 ### No-JS support
 
 If you aim to support users that don't allow sites to use JavaScript, you should consider disabling animations' styles in the first place. You can use `<noscript />` element to inject required CSS. Here's an example:
