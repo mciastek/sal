@@ -30,6 +30,9 @@
     "performance",
     "css"
   ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "pretest": "./node_modules/.bin/eslint ./src/**/*.js",
