@@ -3,6 +3,7 @@
 import sal from '../src/sal';
 
 const browser = require('./config/browser');
+const window = require('./mocks/matchMedia');
 
 describe('Sal', () => {
   describe('unit', () => {
@@ -103,6 +104,36 @@ describe('Sal', () => {
         document.body.classList.contains('sal-disabled')
       ));
 
+      expect(fifthIsAnimated).toBeFalsy();
+      expect(bodyHasDisabledClass).toBeTruthy();
+    }));
+
+    it('should disable animations when reduce-motion is enabled', browser.run(async (engine, opts) => {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      const page = await engine.newPage();
+      await page.goto(`${opts.rootUrl}/default.html`);
+
+      await page.waitFor(SELECTOR);
+
+      const fifthIsAnimated = await page.evaluate((selector) => {
+        window.scrollAnimations.disable();
+        const fifthItem = document.querySelector(selector);
+        const posY = fifthItem.getBoundingClientRect().top + window.scrollY;
+        window.scrollBy(0, posY);
+
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(fifthItem.classList.contains('sal-animate'));
+          }, 100);
+        });
+      }, FIFTH_ITEM_SELECTOR);
+
+      const bodyHasDisabledClass = await page.evaluate(() => (
+        document.body.classList.contains('sal-disabled')
+      ));
+
+      expect(mediaQuery.matches).toBeTruthy();
       expect(fifthIsAnimated).toBeFalsy();
       expect(bodyHasDisabledClass).toBeTruthy();
     }));

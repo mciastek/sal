@@ -118,9 +118,9 @@ By default every animation is played once. You can change it by setting `once` o
 
 | Property | Type | Description | Default  |
 |---------------------------|-------------|---------------|---------|
-| `threshold` | Number | Percentage of an element's area that needs to be visible to launch animation (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | `0.5` |
+| `threshold` | Number | Representation of percentage between 0.0 and 1 of an element's area that needs to be visible to launch animation (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | `0.5` |
 | `once` | Boolean | Defines if animation needs to be launched once. Can be overridden, see [Repeating Animation](#repeating-animation). | `true` |
-| `disable` | Boolean | Flag for disabling animations | `false` |
+| `disabled` | Boolean | Flag for disabling animations | `false` |
 
 You can set options during Sal's initialization, e.g.:
 
@@ -199,6 +199,11 @@ document.addEventListener('sal:out', ({ detail }) => {
 **Note:** This library uses [Custom Event](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) to trigger events on animated elements. Check the [compatibility table](https://caniuse.com/#search=custom%20event) to know if your browser supports it and use a [polyfill](https://github.com/kumarharsh/custom-event-polyfill) if needed.
 
 ## Misc
+
+## Accessibility
+
+the library support [reduce motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) by checking the [operating system preferences](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#User_preferences) so it will turn off all the transitions and animations by default without any work required from your side.
+
 
 ### No-JS support
 

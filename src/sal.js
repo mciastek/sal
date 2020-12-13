@@ -128,6 +128,14 @@ const isDisabled = () => (
 );
 
 /**
+ * check if reduced-motion is enabled
+ * @return {Boolean}
+ */
+const isReducedMotionInUse = () => (
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+);
+
+/**
  * IntersectionObserver callback
  * @param  {Array<IntersectionObserverEntry>} entries
  * @param  {IntersectionObserver} observer
@@ -220,7 +228,7 @@ const init = (settings = options) => {
     throw Error(NOT_SUPPORTED_MESSAGE);
   }
 
-  if (!isDisabled()) {
+  if (!isDisabled() && !isReducedMotionInUse()) {
     enable();
   } else {
     disableAnimations();
