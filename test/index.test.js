@@ -29,7 +29,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const elementsLength = await page.$$eval(SELECTOR, (elements) => (
         elements.length
@@ -46,7 +46,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const firstIsAnimated = await page.$eval(FIRST_ITEM_SELECTOR, (el) => (
         new Promise((resolve) => {
@@ -63,7 +63,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const fifthIsAnimated = await page.evaluate((selector) => {
         const fifthItem = document.querySelector(selector);
@@ -84,7 +84,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const fifthIsAnimated = await page.evaluate((selector) => {
         window.scrollAnimations.disable();
@@ -111,7 +111,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/default.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const fifthIsAnimated = await page.evaluate((selector) => {
         const fifthItem = document.querySelector(selector);
@@ -141,7 +141,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/repeat.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const firstIsAnimated = await page.evaluate((selector) => {
         const firstItem = document.querySelector(selector);
@@ -163,7 +163,7 @@ describe('Sal', () => {
         const page = await engine.newPage();
         await page.goto(`${opts.rootUrl}/repeat-once-attr.html`);
 
-        await page.waitFor(SELECTOR);
+        await page.waitForSelector(SELECTOR);
 
         const firstIsAnimated = await page.evaluate((selector) => {
           const firstItem = document.querySelector(selector);
@@ -186,7 +186,7 @@ describe('Sal', () => {
         const page = await engine.newPage();
         await page.goto(`${opts.rootUrl}/repeat-once-attr.html`);
 
-        await page.waitFor(SELECTOR);
+        await page.waitForSelector(SELECTOR);
 
         await page.evaluate(() => {
           window.scrollAnimations.reset({
@@ -201,7 +201,7 @@ describe('Sal', () => {
           window.scrollBy(0, posY);
         }, FIFTH_ITEM_SELECTOR);
 
-        await page.waitFor(100);
+        await page.waitForTimeout(100);
 
         const [firstIsAnimated, fifthIsAnimated] = await page.evaluate((firstSelector, fifthSelector) => {
           const firstItem = document.querySelector(firstSelector);
@@ -228,7 +228,7 @@ describe('Sal', () => {
       const page = await engine.newPage();
       await page.goto(`${opts.rootUrl}/disabled.html`);
 
-      await page.waitFor(SELECTOR);
+      await page.waitForSelector(SELECTOR);
 
       const firstIsAnimated = await page.$eval(SELECTOR, (el) => (
         el.classList.contains('sal-animate')
@@ -247,7 +247,7 @@ describe('Sal', () => {
         const page = await engine.newPage();
         await page.goto(`${opts.rootUrl}/default.html`);
 
-        await page.waitFor(SELECTOR);
+        await page.waitForSelector(SELECTOR);
 
         const eventFiredOnFifth = await page.evaluate((selector) => {
           const fifthItem = document.querySelector(selector);
@@ -270,7 +270,7 @@ describe('Sal', () => {
         const page = await engine.newPage();
         await page.goto(`${opts.rootUrl}/repeat.html`);
 
-        await page.waitFor(SELECTOR);
+        await page.waitForSelector(SELECTOR);
 
         const eventFiredAtLeastOnce = await page.evaluate(() => {
           const promise = new Promise((resolve) => {
@@ -293,23 +293,23 @@ describe('Sal', () => {
         const page = await engine.newPage();
         await page.goto(`${opts.rootUrl}/reset.html`);
 
-        await page.waitFor(SELECTOR);
+        await page.waitForSelector(SELECTOR);
 
-        await page.waitFor(100);
+        await page.waitForTimeout(100);
 
         await page.evaluate(async () => {
           const animated = Array.from(document.querySelectorAll('.item:not(.after-reset)'));
           window.scrollTo(0, animated[1].offsetTop);
         });
 
-        await page.waitFor(100);
+        await page.waitForTimeout(100);
 
         await page.evaluate(() => {
           const animated = Array.from(document.querySelectorAll('.item:not(.after-reset)'));
           window.scrollTo(0, animated[2].offsetTop);
         });
 
-        await page.waitFor(100);
+        await page.waitForTimeout(100);
 
         const animatedNumber = await page.$$eval('.sal-animate:not(.after-reset)', (items) => (
           items.length
@@ -323,7 +323,7 @@ describe('Sal', () => {
           const page = await engine.newPage();
           await page.goto(`${opts.rootUrl}/reset.html`);
 
-          await page.waitFor(SELECTOR);
+          await page.waitForSelector(SELECTOR);
 
           await page.evaluate(() => {
             window.scrollAnimations.reset({
@@ -336,14 +336,14 @@ describe('Sal', () => {
             window.scrollTo(0, animated[0].offsetTop);
           });
 
-          await page.waitFor(100);
+          await page.waitForTimeout(100);
 
           await page.evaluate(() => {
             const animated = Array.from(document.querySelectorAll('.item.after-reset'));
             window.scrollTo(0, animated[1].offsetTop);
           });
 
-          await page.waitFor(100);
+          await page.waitForTimeout(100);
 
           const animatedNumber = await page.$$eval('.after-reset.sal-animate', (items) => (
             items.length
