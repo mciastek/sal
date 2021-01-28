@@ -1,0 +1,39 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sal - Reset</title>
+
+  <link rel="stylesheet" href="../../dist/sal.css">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .item {
+      background-color: #aaa;
+      height: 100vh;
+    }
+
+    .item:nth-child(2n) {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="item item--1" data-sal="fade"></div>
+    <div class="item item--2" data-sal="slide-up"></div>
+    <div class="item item--3" data-sal="slide-down"></div>
+  </div>
+
+  <script src="../../dist/sal.js"></script>
+  <script>
+    window.scrollAnimations = sal();
+  </script>
+</body>
+</html>

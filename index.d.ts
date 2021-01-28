@@ -16,6 +16,7 @@ declare namespace sal {
     enable: () => void;
     disable: () => void;
     reset: (settings?: Options) => void;
+    update: () => void;
   }
 
   type Instance = (options?: Options) => API;

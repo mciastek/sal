@@ -152,6 +152,22 @@ const onIntersection = (entries, observer) => {
 };
 
 /**
+ * Returns collection of elements and pushes them to observer
+ *
+ * @returns {Array<Node>}
+ */
+const getObservedElements = () => {
+  const collection = [].filter.call(
+    document.querySelectorAll(options.selector),
+    (element) => !isAnimated(element, options.animateClassName),
+  );
+
+  collection.forEach((element) => intersectionObserver.observe(element));
+
+  return collection;
+};
+
+/**
  * Disable sal
  */
 const disable = () => {
@@ -170,12 +186,7 @@ const enable = () => {
     threshold: options.threshold,
   });
 
-  elements = [].filter.call(
-    document.querySelectorAll(options.selector),
-    (element) => !isAnimated(element, options.animateClassName),
-  );
-
-  elements.forEach((element) => intersectionObserver.observe(element));
+  elements = getObservedElements();
 };
 
 /**
@@ -190,6 +201,13 @@ const reset = (settings = {}) => {
 
   setOptions(settings);
   enable();
+};
+/**
+ * Updates observer with new elements to animated
+ */
+const update = () => {
+  const newElements = getObservedElements();
+  elements.push(newElements);
 };
 
 /**
@@ -211,6 +229,7 @@ const init = (settings = options) => {
       disable,
       enable,
       reset,
+      update,
     };
   }
 
@@ -231,6 +250,7 @@ const init = (settings = options) => {
     disable,
     enable,
     reset,
+    update,
   };
 };
 
