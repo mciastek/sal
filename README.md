@@ -149,6 +149,7 @@ sal({
 | `enable` | Enables animations |
 | `disable` | Disables animations |
 | `reset` | Resets instance and allows to pass new options (see [Options](#options)) |
+| `update` | Updates observer with new elements to animated. Useful for dynamically injected HTML. |
 
 Public methods are available after Sal's initialization:
 

@@ -353,6 +353,39 @@ describe('Sal', () => {
         }));
       });
     });
+
+    describe('update', () => {
+      it('should animated dynamically added elements', browser.run(async (engine, opts) => {
+        const page = await engine.newPage();
+        await page.goto(`${opts.rootUrl}/update.html`);
+
+        await page.waitForSelector(SELECTOR);
+
+        await page.evaluate(() => {
+          const container = document.getElementById('container');
+          container.innerHTML += `
+            <div class="item item--4" data-sal="slide-left"></div>
+            <div class="item item--5" data-sal="slide-right"></div>
+          `;
+
+          window.scrollAnimations.update();
+        });
+
+        const fifthIsAnimated = await page.evaluate((selector) => {
+          const fifthItem = document.querySelector(selector);
+          const posY = fifthItem.getBoundingClientRect().top + window.scrollY;
+          window.scrollBy(0, posY);
+
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(fifthItem.classList.contains('sal-animate'));
+            }, 100);
+          });
+        }, FIFTH_ITEM_SELECTOR);
+
+        expect(fifthIsAnimated).toBeTruthy();
+      }));
+    });
   });
 });
 

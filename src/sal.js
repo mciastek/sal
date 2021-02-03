@@ -34,7 +34,7 @@ let elements = [];
 let intersectionObserver = null;
 
 /**
- * Set options
+ * Sets options.
  * @param {Object} settings
  */
 const setOptions = (settings) => {
@@ -47,7 +47,7 @@ const setOptions = (settings) => {
 };
 
 /**
- * Clear animation for given element
+ * Clears animation for given element.
  * @param {HTMLElement} element
  */
 const clearAnimation = (element) => {
@@ -68,7 +68,7 @@ const fireEvent = (name, entry) => {
 };
 
 /**
- * Launch animation by adding class
+ * Launches animation by adding class.
  * @param {IntersectionObserverEntry} entry
  */
 const animate = (entry) => {
@@ -77,7 +77,7 @@ const animate = (entry) => {
 };
 
 /**
- * Reverse animation by removing class
+ * Reverses animation by removing class.
  * @param {IntersectionObserverEntry} entry
  */
 const reverse = (entry) => {
@@ -86,7 +86,7 @@ const reverse = (entry) => {
 };
 
 /**
- * Check if element was animated
+ * Checks if element was animated.
  * @param {HTMLElement} element
  */
 const isAnimated = (element) => (
@@ -94,21 +94,21 @@ const isAnimated = (element) => (
 );
 
 /**
- * Enable animations by remove class from body
+ * Enables animations by remove class from body.
  */
 const enableAnimations = () => {
   document.body.classList.remove(options.disabledClassName);
 };
 
 /**
- * Disable animations by add class from body
+ * Disables animations by add class from body.
  */
 const disableAnimations = () => {
   document.body.classList.add(options.disabledClassName);
 };
 
 /**
- * Clears observer
+ * Clears observer.
  */
 const clearObserver = () => {
   intersectionObserver.disconnect();
@@ -116,7 +116,7 @@ const clearObserver = () => {
 };
 
 /**
- * Check if should be disabled
+ * Check if should be disabled.
  * @return {Boolean}
  */
 const isDisabled = () => (
@@ -128,7 +128,7 @@ const isDisabled = () => (
 );
 
 /**
- * IntersectionObserver callback
+ * IntersectionObserver callback.
  * @param  {Array<IntersectionObserverEntry>} entries
  * @param  {IntersectionObserver} observer
  */
@@ -152,7 +152,23 @@ const onIntersection = (entries, observer) => {
 };
 
 /**
- * Disable sal
+ * Returns collection of elements and pushes them to observer.
+ *
+ * @returns {Array<Node>}
+ */
+const getObservedElements = () => {
+  const collection = [].filter.call(
+    document.querySelectorAll(options.selector),
+    (element) => !isAnimated(element, options.animateClassName),
+  );
+
+  collection.forEach((element) => intersectionObserver.observe(element));
+
+  return collection;
+};
+
+/**
+ * Disables instance by removing animations and clearing observer.
  */
 const disable = () => {
   disableAnimations();
@@ -160,7 +176,7 @@ const disable = () => {
 };
 
 /**
- * Enable sal by launching new IntersectionObserver
+ * Enables instance by launching new IntersectionObserver.
  */
 const enable = () => {
   enableAnimations();
@@ -170,16 +186,11 @@ const enable = () => {
     threshold: options.threshold,
   });
 
-  elements = [].filter.call(
-    document.querySelectorAll(options.selector),
-    (element) => !isAnimated(element, options.animateClassName),
-  );
-
-  elements.forEach((element) => intersectionObserver.observe(element));
+  elements = getObservedElements();
 };
 
 /**
- * Reset instance and provide new settings
+ * Resets instance to provide new settings.
  * @param {Object} settings
  */
 const reset = (settings = {}) => {
@@ -190,6 +201,15 @@ const reset = (settings = {}) => {
 
   setOptions(settings);
   enable();
+};
+
+/**
+ * Updates observer with new elements to animated.
+ * Useful for dynamically injected elements.
+ */
+const update = () => {
+  const newElements = getObservedElements();
+  elements.push(newElements);
 };
 
 /**
@@ -211,6 +231,7 @@ const init = (settings = options) => {
       disable,
       enable,
       reset,
+      update,
     };
   }
 
@@ -231,6 +252,7 @@ const init = (settings = options) => {
     disable,
     enable,
     reset,
+    update,
   };
 };
 
