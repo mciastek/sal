@@ -135,6 +135,7 @@ sal({
 
 | Property | Type | Description | Default  |
 |---------------------------|-------------|---------------|---------|
+| `root` | Element or null | The element that is used as the viewport for checking visibility of the target (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root)) | `window` |
 | `selector` | String | Selector of the elements to be animated | `[data-sal]` |
 | `animateClassName` | String | Class name which triggers animation | `sal-animate` |
 | `disabledClassName` | String | Class name which defines the disabled state | `sal-disabled` |

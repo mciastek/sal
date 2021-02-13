@@ -16,6 +16,7 @@ const NOT_SUPPORTED_MESSAGE = ''
  * Default options
  */
 let options = {
+  root: null,
   rootMargin: '0% 50%',
   threshold: 0.5,
   animateClassName: 'sal-animate',
@@ -182,6 +183,7 @@ const enable = () => {
   enableAnimations();
 
   intersectionObserver = new IntersectionObserver(onIntersection, {
+    root: options.root,
     rootMargin: options.rootMargin,
     threshold: options.threshold,
   });
