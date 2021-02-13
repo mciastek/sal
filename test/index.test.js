@@ -5,10 +5,45 @@ import sal from '../src/sal';
 const browser = require('./config/browser');
 
 describe('Sal', () => {
+  const MockIntersectionObserver = jest.fn();
+
+  Object.defineProperty(window, 'IntersectionObserver', {
+    writable: true,
+    value: MockIntersectionObserver,
+  });
+
   describe('unit', () => {
     it('should be defined', () => {
       expect(sal).toBeDefined();
       expect(sal).toBeInstanceOf(Function);
+    });
+
+    it('returns public methods', () => {
+      const instance = sal();
+
+      expect(Object.keys(instance)).toEqual([
+        'elements',
+        'disable',
+        'enable',
+        'reset',
+        'update',
+      ]);
+    });
+
+    it('passes all options to IntersectionObserver', () => {
+      const dummyRoot = document.createElement('div');
+      const instance = sal({
+        root: dummyRoot,
+        rootMargin: '50% 50%',
+        threshold: 1,
+      });
+
+      expect(instance).toBeDefined();
+      expect(MockIntersectionObserver).toHaveBeenCalledWith(expect.any(Function), {
+        root: dummyRoot,
+        rootMargin: '50% 50%',
+        threshold: 1,
+      });
     });
   });
 
