@@ -120,7 +120,7 @@ By default every animation is played once. You can change it by setting `once` o
 |---------------------------|-------------|---------------|---------|
 | `threshold` | Number | Percentage of an element's area that needs to be visible to launch animation (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds)) | `0.5` |
 | `once` | Boolean | Defines if animation needs to be launched once. Can be overridden, see [Repeating Animation](#repeating-animation). | `true` |
-| `disable` | Boolean | Flag for disabling animations | `false` |
+| `disabled` | Boolean or Function | Flag (or a function returning boolean) for disabling animations | `false` |
 
 You can set options during Sal's initialization, e.g.:
 
