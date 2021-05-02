@@ -17,7 +17,7 @@
    }
  }
  
- @for $i from 1 through $sal-amount-of-delays {
+ @for $i from 1 through $sal-amount-of-delay-timings {
    [data-sal][data-sal-delay='#{$i * 50}'] {
      transition-delay: #{$i * 0.05}s;
    }
