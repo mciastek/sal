@@ -1,0 +1,31 @@
+@use "sass:map";
+/**
+ * Core
+ */
+
+ [data-sal] {
+   transition-duration: $sal-animation-duration;
+   transition-delay: $sal-animation-delay;
+   transition-duration: var(--sal-duration, $sal-animation-duration);
+   transition-delay: var(--sal-delay, $sal-animation-delay);
+   transition-timing-function: var(--sal-easing, map.get($sal-easings, 'ease'));
+ }
+ 
+ @for $i from 4 through $sal-amount-of-duration-timings {
+   [data-sal][data-sal-duration='#{$i * 50}'] {
+     transition-duration: #{$i * 0.05}s;
+   }
+ }
+ 
+ @for $i from 1 through $sal-amount-of-delays {
+   [data-sal][data-sal-delay='#{$i * 50}'] {
+     transition-delay: #{$i * 0.05}s;
+   }
+ }
+ 
+ @each $key, $value in $sal-easings {
+   [data-sal][data-sal-easing='#{$key}'] {
+     transition-timing-function: $value;
+   }
+ }
+ 

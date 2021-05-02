@@ -1,0 +1,99 @@
+@use "sass:map";
+
+/**
+ * Animations
+ */
+
+// Fade
+@if map.get( $sal-animations, "fade") {
+  [data-sal|='fade'] {
+    opacity: 0;
+    transition-property: opacity;
+  }
+  
+  [data-sal|='fade'].sal-animate,
+  body.sal-disabled [data-sal|='fade'] {
+    opacity: 1;
+  }
+}
+
+ // Slide
+ @if map.get( $sal-animations, "slide") {
+  [data-sal|='slide'] {
+    opacity: 0;
+    transition-property: opacity, transform;
+  }
+  
+  [data-sal='slide-up'] {
+    transform: translateY($sal-slide-offset);
+  }
+  
+  [data-sal='slide-down'] {
+    transform: translateY(-$sal-slide-offset);
+  }
+  
+  [data-sal='slide-left'] {
+    transform: translateX($sal-slide-offset);
+  }
+  
+  [data-sal='slide-right'] {
+    transform: translateX(-$sal-slide-offset);
+  }
+  
+  [data-sal|='slide'].sal-animate,
+  body.sal-disabled [data-sal|='slide'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+ // Zoom
+ @if map.get( $sal-animations, "zoom") {
+  [data-sal|='zoom'] {
+    opacity: 0;
+    transition-property: opacity, transform;
+  }
+  
+  [data-sal='zoom-in'] {
+    transform: scale($sal-zoom-in-scale);
+  }
+  
+  [data-sal='zoom-out'] {
+    transform: scale($sal-zoom-out-scale);
+  }
+  
+  [data-sal|='zoom'].sal-animate,
+  body.sal-disabled [data-sal|='zoom'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+ 
+ // Flip
+ @if map.get( $sal-animations, "flip") {
+  [data-sal|='flip'] {
+    backface-visibility: hidden;
+    transition-property: transform;
+  }
+  
+  [data-sal='flip-left'] {
+    transform: perspective(2000px) rotateY(-$sal-flip-rotate);
+  }
+  
+  [data-sal='flip-right'] {
+    transform: perspective(2000px) rotateY($sal-flip-rotate);
+  }
+  
+  [data-sal='flip-up'] {
+    transform: perspective(2000px) rotateX(-$sal-flip-rotate);
+  }
+  
+  [data-sal='flip-down'] {
+    transform: perspective(2000px) rotateX($sal-flip-rotate);
+  }
+  
+  [data-sal|='flip'].sal-animate,
+  body.sal-disabled [data-sal|='flip'] {
+    transform: none;
+  }
+}
