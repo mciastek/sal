@@ -45,6 +45,13 @@ And remember to add styles
 // Other
 @import './node_modules/sal.js/dist/sal.css';
 ```
+Cdn link
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mciastek/sal/dist/sal.css">
+```
+```html
+<script src="https://cdn.jsdelivr.net/gh/mciastek/sal/dist/sal.js"></script>
+```
 
 ## Usage
 
