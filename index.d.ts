@@ -1,6 +1,6 @@
 declare namespace sal {
   interface Options {
-    root: Element | null;
+    root?: Element | null;
     rootMargin?: string;
     threshold?: number;
     animateClassName?: string;
